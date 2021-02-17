@@ -66,17 +66,15 @@ const Login = () => {
                         onChange={({ target }) => setPassword(target.value)}
                     />
                     <Button>Entrar</Button>
-
-                    <Register>
-                        Não tem conta? <NavLink
-                            to="/register"
-                            style={{
-                                'color': '#F57F17',
-                                'fontWeight': 'bold',
-                            }}
-                        > Registre-se</NavLink>
-                    </Register>
-                </Form>
+                    Não tem conta? <NavLink
+                        to="/register"
+                        style={{
+                            'color': '#F57F17',
+                            'fontWeight': 'bold',
+                        }}
+                    > Registre-se</NavLink>
+                </Register>
+            </Form>
             <Template>
                 <Images>
                     <img src={Logo} alt='' />
