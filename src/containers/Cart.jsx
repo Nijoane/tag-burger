@@ -113,7 +113,7 @@ function Cart({ total, cart, menu, reduceCart }) {
                         id="setOrder"
                         type="submit"
                         onClick={(event) => {
-                            const allOrders = [{cart}];
+                            const allOrders = [{order: order}];
                             localStorage.setItem('order', JSON.stringify(allOrders));
                             createOrder(event); 
                         }}
