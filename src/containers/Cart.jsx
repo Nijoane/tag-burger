@@ -11,19 +11,21 @@ function Cart({ total, cart, menu, reduceCart }) {
     const [observation, setObservation] = useState('')
     
     const createOrder = async () => {
+        const newOrder =  order.map((item) => ({
+            id: `${item.id}`,
+            qtd: 1,
+        }))
+
         const { url, options } = CREATE_ORDER({
             client,
             table,
-            products: order.map((item) => ({
-                id: `${item.id}`,
-                qtd: 1,
-            })),
+            products: newOrder,
         })
+
         const response = await fetch(url, options);
         const json = await response.json();
         setOrder(json)
         setResponse(json)
-        console.log(setOrder)
     }
 
     return (
