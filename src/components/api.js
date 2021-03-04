@@ -60,3 +60,19 @@ export const CREATE_ORDER = () => {
         },
     };
 }
+
+export const GET_ORDER = (date) => {
+    return {
+        url: BASE_URL + '/orders',
+        options:{
+            method: 'GET',
+            headers:{
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `${token}`,
+                'Date': date
+            }
+        }
+
+    }
+}
