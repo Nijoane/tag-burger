@@ -22,7 +22,7 @@ _Um muito simples para o café da manhã:_
 | Misto Quente| 10,00 |
 | Suco de fruta natural| 7,00|
 
-__E outro menu para o resto do dia:__
+_E outro menu para o resto do dia:_
 
 | Hambúrgueres | Valor |
 | ----------- | ----------- |
