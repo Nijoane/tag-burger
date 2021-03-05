@@ -52,7 +52,7 @@ export const MenuOrders = styled.div`
     }
 `;
 
-export const BtnAdition = styled.input`
+export const BtnAdition = styled.button`
     background: #F57F17;
     border: none;
     border-radius: 0 4px 4px 0;
