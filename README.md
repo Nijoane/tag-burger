@@ -36,7 +36,6 @@ _E outro menu para o resto do dia:_
 | Água 750ml	    | 7,00 |
 | Refrigerante 500ml| 7,00 |
 | Refrigerante 750ml| 10,00 |
-|
 
 ### Histórias de Usúario
 
@@ -84,13 +83,13 @@ _Critérios de aceitação_
 - Ver a lista de pedidos prontos para servir.
 - Marque os pedidos que foram entregues.
 
-###Protótipo
+### Protótipo
 
 <img src='src/images/prototipo.png' width='100%'>
 
 > Protótipo criando com a ferramenta [Figma](https://www.figma.com/file/5kMPXjESmGvKjwH5eiLpfy/TAG-Burger?node-id=0%3A1)
 
-####Paleta de cores da aplicação.
+#### Paleta de cores da aplicação.
 
 <img src='src/images/paleta.png' width='80%'>
 
