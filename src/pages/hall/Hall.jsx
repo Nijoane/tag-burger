@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom';
 import Menu from "../../containers/Menu";
 import Logo from '../../images/logoLaranja.png';
 import { USER } from "../../components/api";
-// import { FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt } from 'react-icons/fa';
+
 import { MenuOrders, DivMenus, LogoHall, ButtonPedidos, Textarea, SpamQtd, DivTotal, Soma, Total, Itens } from '../../components/stylesMenu';
+
 const Hall = () => {
     const [menuData, setMenuData] = useState({});
     const [cartData, setCartData] = useState({});
@@ -17,6 +19,7 @@ const Hall = () => {
     const [response, setResponse] = useState('');
     const [observation, setObservation] = useState('')
     const [status, setStatus] = useState('pending')
+
     useEffect(async function (token) {
         const { url, options } = USER(token);
         const response = await fetch(url, options);
@@ -54,11 +57,13 @@ const Hall = () => {
         const myHeaders = new Headers();
         myHeaders.append("Authorization", `${token}`);
         myHeaders.append("Content-Type", "application/json");
+
         const products = (Object.keys(cartData).map((sku) => ([`
             "qtd": ${cartData[sku]}  
             "id":${menuData[sku].id} 
             ${menuData[sku].name}
          `,])))
+
         const raw = JSON.stringify({
             "status": status,
             "client": client,
@@ -66,12 +71,14 @@ const Hall = () => {
             "products": products
          });
         console.log(raw);
+
         const requestOptions = {
             method: "POST",
             headers: myHeaders,
             body: raw,
             redirect: "follow"
         };
+
         fetch("https://lab-api-bq.herokuapp.com/orders", requestOptions)
             .then(response => response.json())
             .then(result => {
@@ -85,6 +92,7 @@ const Hall = () => {
     const token = localStorage.getItem('token');
     return (
         <div>
+
             <Link to='/orders'>
                 <ButtonPedidos>Pedidos</ButtonPedidos>
             </Link>
@@ -97,6 +105,7 @@ const Hall = () => {
                     />
                 </div>
                 <MenuOrders>
+
                     <div id="cart">
                         <label htmlFor="client">Cliente</label>
                         <input
@@ -123,6 +132,7 @@ const Hall = () => {
                             <Itens>Qtd.</Itens>
                             <Itens>Valor</Itens>
                         </SpamQtd>
+
                         <div id="cart-area">
                             {
                                 Object.keys(cartData).map((sku, index) => (
@@ -159,6 +169,7 @@ const Hall = () => {
                                     </div>
                                 ))
                             }
+                            
                             <div id="cart-total">
                                 <Textarea
                                     name="Observations"
@@ -186,5 +197,6 @@ const Hall = () => {
             </DivMenus>
         </div>
     );
+
 }
 export default Hall;
