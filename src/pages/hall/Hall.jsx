@@ -1,4 +1,3 @@
-
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
@@ -6,9 +5,7 @@ import Menu from "../../containers/Menu";
 import Logo from '../../images/logoLaranja.png';
 import { USER } from "../../components/api";
 import { FaTrashAlt } from 'react-icons/fa';
-
-import { MenuOrders, DivMenus, LogoHall, ButtonPedidos, Textarea, SpamQtd, DivTotal, Soma, Total, Itens } from '../../components/stylesMenu';
-
+import { ButtonSend, InputTable, InputClient, LabelClient, SpanFlavor, Complement, SpanNameOrders, ProductsOrders, MenuOrders, DivMenus, LogoHall, ButtonPedidos, Textarea, SpamQtd, DivTotal, Soma, Total, Itens } from '../../components/stylesMenu';
 const Hall = () => {
     const [menuData, setMenuData] = useState({});
     const [cartData, setCartData] = useState({});
@@ -19,7 +16,6 @@ const Hall = () => {
     const [response, setResponse] = useState('');
     const [observation, setObservation] = useState('')
     const [status, setStatus] = useState('pending')
-
     useEffect(async function (token) {
         const { url, options } = USER(token);
         const response = await fetch(url, options);
@@ -28,57 +24,57 @@ const Hall = () => {
     })
     useEffect(() => {
         let total = (0);
-        Object.keys(cartData).map((sku) => {
-            let qty = (cartData[sku]);
-            let price = (menuData[sku].price);
+        Object.keys(cartData).map((qtd) => {
+            let qty = (cartData[qtd]);
+            let price = (menuData[qtd].price);
             return (total += qty * price);
         })
         setCartTotal(total);
     }, [cartData])
-    const addToCart = sku => {
+    const addToCart = qtd => {
         let newCart = { ...cartData };
-        if (sku in cartData) {
-            newCart[sku] += 1;
+        if (qtd in cartData) {
+            newCart[qtd] += 1;
         }
         else {
-            newCart[sku] = 1;
+            newCart[qtd] = 1;
         }
         setCartData(newCart);
     };
-    const reduceFromCart = sku => {
+    const reduceFromCart = qtd => {
         let newCart = { ...cartData };
-        if (sku in cartData) {
-            newCart[sku] -= 1;
-            if (newCart[sku] < 1) delete newCart[sku];
+        if (qtd in cartData) {
+            newCart[qtd] -= 1;
+            if (newCart[qtd] < 1) delete newCart[qtd];
         }
         setCartData(newCart);
     };
-    function createOrder(client, table) {
+    function createOrder(client, table,) {
         const myHeaders = new Headers();
         myHeaders.append("Authorization", `${token}`);
         myHeaders.append("Content-Type", "application/json");
 
-        const products = (Object.keys(cartData).map((sku) => ([`
-            "qtd": ${cartData[sku]}  
-            "id":${menuData[sku].id} 
-            ${menuData[sku].name}
-         `,])))
+        
+        const products = (Object.keys(cartData).map((qtd) => (
+            `
+            qtd: ${cartData[qtd]}  
+            id:${menuData[qtd].id} 
+            name:${menuData[qtd].name}
+        `)))
 
         const raw = JSON.stringify({
-            "status": status,
-            "client": client,
-            "table": table,
-            "products": products
-         });
-        console.log(raw);
-
+            status,
+            client,
+            table,
+            products: products.push('qtd', 'id', 'name')
+        })
+        
         const requestOptions = {
             method: "POST",
             headers: myHeaders,
             body: raw,
             redirect: "follow"
         };
-
         fetch("https://lab-api-bq.herokuapp.com/orders", requestOptions)
             .then(response => response.json())
             .then(result => {
@@ -92,7 +88,6 @@ const Hall = () => {
     const token = localStorage.getItem('token');
     return (
         <div>
-
             <Link to='/orders'>
                 <ButtonPedidos>Pedidos</ButtonPedidos>
             </Link>
@@ -102,13 +97,13 @@ const Hall = () => {
                     <Menu
                         menu={menuData}
                         addToCart={addToCart}
+
                     />
                 </div>
                 <MenuOrders>
-
                     <div id="cart">
-                        <label htmlFor="client">Cliente</label>
-                        <input
+                        <LabelClient htmlFor="client">Cliente</LabelClient>
+                        <InputClient
                             type="text"
                             id="client"
                             value={client}
@@ -117,8 +112,8 @@ const Hall = () => {
                                 localStorage.setItem('client', client);
                             }}
                         />
-                        <label htmlFor="table">Mesa</label>
-                        <input
+                        <LabelClient htmlFor="table">Mesa</LabelClient>
+                        <InputTable
                             type="text"
                             id="table"
                             value={table}
@@ -132,44 +127,41 @@ const Hall = () => {
                             <Itens>Qtd.</Itens>
                             <Itens>Valor</Itens>
                         </SpamQtd>
-
                         <div id="cart-area">
-                            {
-                                Object.keys(cartData).map((sku, index) => (
-                                    <div className="cart-item" key={index}>
-                                        <div className="item-text">
-                                            <p>
-                                                {menuData[sku].name}
-                                            </p>
-                                            <p>{cartData[sku]}</p>
-                                            <span className="item-total">
-                                                R${menuData[sku].price},00
+                            {Object.keys(cartData).map((qtd, index) => (
+                                <ProductsOrders key={index}>
+                                    <SpanNameOrders key={index}>
+
+                                        <p>
+                                            {menuData[qtd].name}
+                                        </p>
+                                        <p > {cartData[qtd]}</p>
+                                        <span className="item-total">
+                                            R${menuData[qtd].price},00
                                     <button
-                                                    className="remove-button"
-                                                    onClick={() => reduceFromCart(sku)}
-                                                    style={{
-                                                        'border': 'none',
-                                                        'outline': 'none',
-                                                        'backgroundColor': 'transparent',
-                                                        'padding': '5px',
-                                                        'color': '#E65100',
-                                                        'cursor': 'pointer'
-                                                    }}>
-                                                    - </button>
-                                            </span>
-                                        </div>
-                                        <span>
-                                            <p>
-                                                {menuData[sku].flavor}
-                                            </p>
-                                            <div>
-                                                {menuData[sku].complement}
-                                            </div>
+                                                className="remove-button"
+                                                onClick={() => reduceFromCart(qtd)}
+                                                style={{
+                                                    'border': 'none',
+                                                    'outline': 'none',
+                                                    'backgroundColor': 'transparent',
+                                                    'padding': '5px',
+                                                    'color': '#E65100',
+                                                    'cursor': 'pointer'
+                                                }}><FaTrashAlt /></button>
                                         </span>
-                                    </div>
-                                ))
+                                    </SpanNameOrders>
+                                    <SpanFlavor>
+                                        <p>
+                                            {menuData[qtd].flavor}
+                                        </p>
+                                        <Complement>
+                                            {menuData[qtd].complement}
+                                        </Complement>
+                                    </SpanFlavor>
+                                </ProductsOrders>
+                            ))
                             }
-                            
                             <div id="cart-total">
                                 <Textarea
                                     name="Observations"
@@ -189,14 +181,13 @@ const Hall = () => {
                                     </Soma>
                                 </DivTotal>
                                 {response && response.ok && <p>Seu pedido foi enviado</p>}
-                                <button onClick={() => createOrder(client, table, order)}>Enviar Pedido</button>
                             </div>
                         </div>
                     </div>
                 </MenuOrders>
             </DivMenus>
+            <ButtonSend onClick={() => createOrder(client, table, order)}>Enviar Pedido</ButtonSend>
         </div>
     );
-
 }
 export default Hall;
