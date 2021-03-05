@@ -4,18 +4,16 @@ export const MenuPedidos = styled.div`
     border-radius: 30px;
     background: linear-gradient(145deg, #fffdf5, #dbd4ce);
     box-shadow:  11px 11px 57px #999590,
-            -11px -11px 57px #ffffff;
+             -11px -11px 57px #ffffff;
     height: 390px;     
     width: 450px;
     overflow: auto;
     padding: 20px;
-
     @media screen and (max-width: 1024px) {
         height: 510px;     
         width: 420px;
         margin-left: -50px;
     }
-
     @media screen and (max-width: 768px) {
         height: 700px;     
         width:350px;
@@ -28,15 +26,14 @@ export const MenuOrders = styled.div`
     border-radius: 30px;
     background: linear-gradient(145deg, #fffdf5, #dbd4ce);
     box-shadow:  11px 11px 57px #999590,
-            -11px -11px 57px #ffffff;
+             -11px -11px 57px #ffffff;
     height: 390px;     
     width: 480px;
     overflow: auto;
     padding: 20px;
     margin-left: 100px;
-    margin-right: -150px;
+    margin-right: -50px;
     margin-top: 20px;
-
     @media screen and (max-width: 1024px) {
     height: 510px;   
     width: 420px;
@@ -63,11 +60,9 @@ export const BtnAdition = styled.button`
     border: none;
     outline: none;
     cursor: pointer;
-
     @media screen and (max-width: 768px) {
         height: 100px;  
     }
-
     @media screen and (max-width: 1024px) {
         height: 100px;  
         width: 80px;   
@@ -93,7 +88,6 @@ export const ButtonMenu = styled.button`
     font-family: Roboto Slab;
     font-size: 15px;
     font-weight: 400;
-
     @media screen and (max-width: 1024px) {
     width: 150px;
     height: 70px;
@@ -106,12 +100,7 @@ export const ButtonMenu = styled.button`
 `;
 
 export const DivButton = styled.div`
-    display: flex;
-    width: 450px;
-    justify-content: flex-start;
-    margin-left: 300px;
-    margin-top: -300px:
-    margin-right: 0;
+    width:450px;
 `;
 
 export const Products = styled.div`
@@ -126,13 +115,13 @@ export const Products = styled.div`
     border-radius: 10px;
     background: linear-gradient(145deg, #fffdf5, #dbd4ce);
     box-shadow:  11px 11px 57px #999590,
-            -11px -11px 57px #ffffff;
+                     -11px -11px 57px #ffffff;
     
     @media screen and (max-width: 1024px) {
     width: 380px;
     height: 100px;
     }
-    
+           
     @media screen and (max-width: 768px) {
     width: 250px;
     height: 100px;
@@ -149,7 +138,6 @@ export const DivMenus = styled.div`
 export const LogoHall = styled.img`
     margin-left: 350px;
     margin-top: 10px;
-
     @media screen and (max-width: 1024px) {
         margin-left: 270px;
     }
@@ -168,11 +156,9 @@ export const Textarea = styled.textarea`
     padding: 20px;
     border-radius: 10px;
     color:  #E65100;
-
     @media screen and (max-width: 1024px) {
         width: 370px;
     }
-
     @media screen and (max-width: 768px) {
         width:250px;
     }
@@ -205,11 +191,9 @@ export const SpanName = styled.span`
     display:flex;
     justify-content: space-between;
     width: 270px;
-
     @media screen and (max-width: 768px) {
     width: 100px;
     }
-
     @media screen and (max-width: 1024px) {
         width: 200px;
     }
@@ -245,7 +229,7 @@ export const ProductsOrders = styled.div`
     border-radius: 10px;
     background: linear-gradient(145deg, #fffdf5, #dbd4ce);
     box-shadow:  11px 11px 57px #999590,
-            -11px -11px 57px #ffffff;
+                 -11px -11px 57px #ffffff;
     padding: 15px;
     @media screen and (max-width: 1024px) {
         width: 380px;
@@ -261,7 +245,6 @@ export const SpanNameOrders = styled.span`
     display:flex;
     justify-content: space-between;
     width: 400px;
-
     @media screen and (max-width: 1024px) {
         width: 350px;
     }
@@ -275,7 +258,6 @@ export const DivTotal = styled.div`
     justify-content: flex-end;
     width: 430px;
     padding:15px;
-
     @media screen and (max-width: 1024px) {
     margin-left:-65px
     }
@@ -322,12 +304,75 @@ export const ButtonPedidos = styled.button`
     height: 50px;
     width: 200px;
     box-shadow : 9px 9px 19px #909092, -9px -9px 19px #fff;
-
     @media screen and (max-width: 1024px) {
         margin-left: 950px;
         height: 80px;
     }
+    @media screen and (max-width: 768px) {
+        margin-left:750px;
+    }
+`;
 
+export const LabelClient = styled.label`
+    height:35px;
+    width: 100px;
+    padding: 10px;
+    text-align:center;
+    border-radius: 10px;
+    font-family: Roboto Slab;
+`;
+
+export const InputTable = styled.input`
+    background: linear-gradient(145deg, #fffdf5, #dbd4ce);
+    box-shadow: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.5),
+    inset -6px -6px 10px 0 rgba(255, 255, 255, 0.9);
+    height:35px;
+    width: 100px;
+    padding: 10px;
+    text-align:center;
+    border-radius: 10px;
+    color:  #E65100;
+    font-family: Roboto Slab;
+    border: none;
+    outline: none;
+    font-size: 15px;
+`;
+
+export const InputClient = styled.input`
+    background: linear-gradient(145deg, #fffdf5, #dbd4ce);
+    box-shadow: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.5),
+    inset -6px -6px 10px 0 rgba(255, 255, 255, 0.9);
+    height:35px;
+    width: 180px;
+    padding: 10px;
+    text-align:center;
+    border-radius: 10px;
+    color:  #E65100;
+    font-family: Roboto Slab;
+    border: none;
+    outline: none;
+    font-size: 15px;
+`;
+
+export const ButtonSend  = styled.button`
+    border: none;
+    outline: none;
+    background: #E65100;
+    margin-left: 1000px;
+    text-align: center;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-top: -50px;
+    position: absolute;
+    height: 60px;
+    width: 200px;
+    box-shadow : 9px 9px 19px #909092, -9px -9px 19px #fff;
+    @media screen and (max-width: 1024px) {
+        margin-left: 950px;
+        height: 80px;
+    }
     @media screen and (max-width: 768px) {
         margin-left:750px;
     }

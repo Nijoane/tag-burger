@@ -71,7 +71,15 @@ export const GET_ORDER = (date) => {
                 'Accept': 'application/json',
                 'Authorization': `${token}`,
                 'Date': date
-            }
+            },       
+            // body: JSON.stringify({
+            //     'client': '',
+            //     'table':  '',
+            //     'products': [{
+            //         'id': '',
+            //         'qtd': 1
+            //     }]
+            // }),
         }
 
     }

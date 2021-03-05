@@ -1,4 +1,3 @@
-
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
@@ -54,24 +53,29 @@ const Hall = () => {
         const myHeaders = new Headers();
         myHeaders.append("Authorization", `${token}`);
         myHeaders.append("Content-Type", "application/json");
+      
         const products = (Object.keys(cartData).map((qtd) => (
             `
             qtd: ${cartData[qtd]}  
             id:${menuData[qtd].id} 
             name:${menuData[qtd].name}
         `)))
+        
         const raw = JSON.stringify({
             status,
             client,
             table,
-            products: products.push()
+            products: products.push('qtd', 'id', 'name')
         })
+        
+
         const requestOptions = {
             method: "POST",
             headers: myHeaders,
             body: raw,
             redirect: "follow"
         };
+      
         fetch("https://lab-api-bq.herokuapp.com/orders", requestOptions)
             .then(response => response.json())
             .then(result => {
@@ -82,6 +86,7 @@ const Hall = () => {
                 console.log(result.status)
             })
     }
+  
     const token = localStorage.getItem('token');
     return (
         <div>
@@ -94,6 +99,7 @@ const Hall = () => {
                     <Menu
                         menu={menuData}
                         addToCart={addToCart}
+
                     />
                 </div>
                 <MenuOrders>
