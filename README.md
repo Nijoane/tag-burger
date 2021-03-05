@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+<img src='src/images/logoLaranja.png' width='100%' >
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About Project
 
-## Available Scripts
+Um pequeno restaurante de hambúrgueres, que está crescendo, necessita uma interface em que se possa realizar pedidos utilizando um tablet, e enviá-los para a cozinha para que sejam preparados de forma ordenada e eficiente.
 
-In the project directory, you can run:
+> Para acessar a plataforma clique [aqui](https://tag-burger.vercel.app/)! :hamburger:
 
-### `yarn start`
+__Somos TAG Burger, um fast food 24hrs__
+<img src='src/images/tagburger.gif' width='100%'>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+A nossa proposta de serviço 24 horas foi muito bem recebida e, para continuar a crescer, precisamos de um sistema que nos ajude a receber pedidos de nossos clientes.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+__Nós temos 2 menus.__
+_Um muito simples para o café da manhã:_
 
-### `yarn test`
+| Itens | Valor |
+| ----------- | ----------- |
+| Café americano | 5,00 |
+| Misto Quente| 10,00 |
+| Suco de fruta natural| 7,00 |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+__E outro menu para o resto do dia:__
 
-### `yarn build`
+| Hambúrgueres | Valor |
+| ----------- | ----------- |
+| Hambúrguer simples| 10,00|
+| Hambúrguer duplo	| 15,00|
+| Acompanhamentos	| 1,00 |
+| Batata frita	    | 5,00 |
+| Anéis de cebola	| 5,00 |
+| Bebidas	        |__Valor__|
+| Água 500ml        | 5,00 |
+| Água 750ml	    | 7,00 |
+| Refrigerante 500ml| 7,00 |
+| Refrigerante 750ml| 10,00 |
+|
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Histórias de Usúario
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+__[História de usuário 1] Usuário deve ter seu perfil (login/senha) para acessar o sistema.__
+Eu como funcionário do restaurante quero entrar na plataforma e ver apenas a tela importante para o meu trabalho.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+_Critérios de aceitação_
+- O que deve acontecer para satisfazer as necessidades do usuário?
 
-### `yarn eject`
+- Criar login e senha.
+- Registar tipo de usuário (cozinha / salão), login e senha.
+- Entrar na tela correta para cada usuário.
+- Definição de pronto
+- O acordado abaixo deve acontecer para dizer que a história está terminada:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+__[História de usuário 2] Garçom/Garçonete deve poder anotar o seu pedido.__
+Eu como garçom/garçonete quero poder anotar o meu pedido saber o valor de cada produto e poder enviar o pedido para a cozinha para ser preparado.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+_Critérios de aceitação_
+- O que deve acontecer para satisfazer as necessidades do usuário?
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Anotar o nome e mesa.
+- Adicionar produtos aos pedidos.
+- Excluir produtos.
+- Ver resumo e o total da compra.
+- Enviar o pedido para a cozinha (guardar em algum banco de dados).
+- Funcionar bem e se adequar a um tablet.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+__[História de usuário 3] Chefe de cozinha deve ver os pedidos.__
+Eu como chefe de cozinha quero ver os pedidos dos clientes em ordem, poder marcar que estão prontos e poder notificar os garçons/garçonetes que o pedido está pronto para ser entregue ao cliente.
 
-## Learn More
+_Critérios de aceitação_
+- Ver os pedidos à medida em que são feitos.
+- Marcar os pedidos que foram preparados e estão prontos para serem servidos.
+- Ver o tempo que levou para preparar o pedido desde que chegou, até ser marcado como concluído.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+__[História de usuário 4] Garçom/Garçonete deve ver os pedidos prontos para servir.__
+Eu como garçom/garçonete quero ver os pedidos que estão prontos para entregá-los rapidamente aos clientes.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+_Critérios de aceitação_
+- Ver a lista de pedidos prontos para servir.
+- Marque os pedidos que foram entregues.
 
-### Code Splitting
+###Protótipo
+<img src='src/images/prototipo.png' width='100%'>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+> Protótipo criando com a ferramenta [Figma](https://www.figma.com/file/5kMPXjESmGvKjwH5eiLpfy/TAG-Burger?node-id=0%3A1)
 
-### Analyzing the Bundle Size
+####Paleta de cores da aplicação.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<img src='src/images/paleta.png' width='80%'>
 
-### Making a Progressive Web App
+__Developer by:__
+[Nicaely Joane](https://github.com/Nijoane)
+[Priscila Silveira](https://github.com/PriscilaSSilveira)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+-----
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Thank you! :smile:
