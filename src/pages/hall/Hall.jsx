@@ -1,11 +1,12 @@
+
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import Menu from "../../containers/Menu";
 import Logo from '../../images/logoLaranja.png';
 import { USER } from "../../components/api";
+import { FaTrashAlt } from 'react-icons/fa';
 
-// import { FaTrashAlt } from 'react-icons/fa';
 import { MenuOrders, DivMenus, LogoHall, ButtonPedidos, Textarea, SpamQtd, DivTotal, Soma, Total, Itens } from '../../components/stylesMenu';
 
 const Hall = () => {
@@ -19,14 +20,12 @@ const Hall = () => {
     const [observation, setObservation] = useState('')
     const [status, setStatus] = useState('pending')
 
-
     useEffect(async function (token) {
         const { url, options } = USER(token);
         const response = await fetch(url, options);
         const json = await response.json();
         setMenuData(json);
     })
-
     useEffect(() => {
         let total = (0);
         Object.keys(cartData).map((sku) => {
@@ -36,13 +35,11 @@ const Hall = () => {
         })
         setCartTotal(total);
     }, [cartData])
-
     const addToCart = sku => {
         let newCart = { ...cartData };
         if (sku in cartData) {
             newCart[sku] += 1;
         }
-
         else {
             newCart[sku] = 1;
         }
@@ -139,10 +136,7 @@ const Hall = () => {
                         <div id="cart-area">
                             {
                                 Object.keys(cartData).map((sku, index) => (
-
                                     <div className="cart-item" key={index}>
-
-
                                         <div className="item-text">
                                             <p>
                                                 {menuData[sku].name}
@@ -171,12 +165,11 @@ const Hall = () => {
                                             <div>
                                                 {menuData[sku].complement}
                                             </div>
-
                                         </span>
                                     </div>
                                 ))
                             }
-
+                            
                             <div id="cart-total">
                                 <Textarea
                                     name="Observations"
@@ -200,12 +193,10 @@ const Hall = () => {
                             </div>
                         </div>
                     </div>
-
                 </MenuOrders>
             </DivMenus>
         </div>
     );
 
 }
-
 export default Hall;

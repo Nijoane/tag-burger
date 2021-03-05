@@ -1,10 +1,8 @@
 import { useState } from "react";
 import MenuItem from "../components/MenuItem";
 import { ButtonMenu, DivButton, MenuPedidos } from '../components/stylesMenu'
-
 function Menu({ menu, addToCart }) {
     const [show, setShow] = useState(true)
-
     function complements(item) {
         if (item.complement !== null) {
             return (item.complement)
@@ -21,7 +19,6 @@ function Menu({ menu, addToCart }) {
             return ('')
         }
     }
-
     return (
         <div>
             <div id="menu-area">
@@ -67,5 +64,4 @@ function Menu({ menu, addToCart }) {
         </div>
     );
 }
-
 export default Menu;
