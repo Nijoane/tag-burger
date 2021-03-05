@@ -4,7 +4,7 @@ export const MenuPedidos = styled.div`
     border-radius: 30px;
     background: linear-gradient(145deg, #fffdf5, #dbd4ce);
     box-shadow:  11px 11px 57px #999590,
-             -11px -11px 57px #ffffff;
+            -11px -11px 57px #ffffff;
     height: 390px;     
     width: 450px;
     overflow: auto;
@@ -28,7 +28,7 @@ export const MenuOrders = styled.div`
     border-radius: 30px;
     background: linear-gradient(145deg, #fffdf5, #dbd4ce);
     box-shadow:  11px 11px 57px #999590,
-             -11px -11px 57px #ffffff;
+            -11px -11px 57px #ffffff;
     height: 390px;     
     width: 480px;
     overflow: auto;
@@ -52,7 +52,7 @@ export const MenuOrders = styled.div`
     }
 `;
 
-export const BtnAdition = styled.button`
+export const BtnAdition = styled.input`
     background: #F57F17;
     border: none;
     border-radius: 0 4px 4px 0;
@@ -106,7 +106,12 @@ export const ButtonMenu = styled.button`
 `;
 
 export const DivButton = styled.div`
-    width:450px;
+    display: flex;
+    width: 450px;
+    justify-content: flex-start;
+    margin-left: 300px;
+    margin-top: -300px:
+    margin-right: 0;
 `;
 
 export const Products = styled.div`
@@ -121,13 +126,13 @@ export const Products = styled.div`
     border-radius: 10px;
     background: linear-gradient(145deg, #fffdf5, #dbd4ce);
     box-shadow:  11px 11px 57px #999590,
-                     -11px -11px 57px #ffffff;
+            -11px -11px 57px #ffffff;
     
     @media screen and (max-width: 1024px) {
     width: 380px;
     height: 100px;
     }
-           
+    
     @media screen and (max-width: 768px) {
     width: 250px;
     height: 100px;
@@ -240,7 +245,7 @@ export const ProductsOrders = styled.div`
     border-radius: 10px;
     background: linear-gradient(145deg, #fffdf5, #dbd4ce);
     box-shadow:  11px 11px 57px #999590,
-                 -11px -11px 57px #ffffff;
+            -11px -11px 57px #ffffff;
     padding: 15px;
     @media screen and (max-width: 1024px) {
         width: 380px;
