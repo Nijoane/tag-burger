@@ -82,7 +82,6 @@ const Hall = () => {
                 "qtd": `${cartData[qtd]}`
             }
         )))
-
         const raw = JSON.stringify({
             status,
             client,
@@ -98,6 +97,7 @@ const Hall = () => {
             body: raw,
             redirect: "follow"
         };
+      
         fetch("https://lab-api-bq.herokuapp.com/orders", requestOptions)
             .then(response => response.json())
             .then(result => {
@@ -108,11 +108,13 @@ const Hall = () => {
                 console.log(result.status)
             })
     }
+
     function logout(event) {
         event.preventDefault();
         localStorage.clear();
         history.push("/");
       }
+  
     const token = localStorage.getItem('token');
     return (
         <div>
