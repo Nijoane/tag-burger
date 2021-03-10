@@ -1,51 +1,124 @@
-// import { useState } from "react";
-// import { GET_ORDER } from "../../components/api";
-
+import { useEffect, useState } from 'react';
 const Kitchen = () => {
-    // const [request, setRequest] = useState([])
-    // const [status, setStatus] = useState('')
-    const showClient = localStorage.getItem('client');
-    const showTable = localStorage.getItem('table');
-    const showOrder = localStorage.getItem('order');
-    const showObservation = localStorage.getItem('observation');
-    
-    
-//  const getOrder = async (date) => {
-//     const {url, options} = GET_ORDER({
-//         client: showClient,
-//         table: showTable,
-//         order: showOrder,
-//         observation: showObservation,
-//         status: status
-//     })
-
-//     const response = await fetch(url, options)
-//     const json = await response.json()
-//     setRequest(json)
-// } 
-
-
-
-    //acessar a api e pegar todos os pedidos com status pedding
-    //setar os pedidos pelo setrequest
-    //reques.map
-    //button pedidos prontos onclic update status done
-    //useeffect
-
+    const [pending, setPending] = useState([]);
+    const [doing, setDoing] = useState([]);
+    const token = localStorage.getItem('token');
+    const getAllOrders = async (token) => {
+        const options = {
+            method: 'GET',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `${token}`
+            },
+        };
+        fetch('https://lab-api-bq.herokuapp.com/orders', options)
+        .then(response => response.json())
+        .then(result => {
+            if(result) {
+                const allOrders = result;
+                console.log(allOrders)
+                setPending(allOrders.filter((order) => 
+                    order.status.includes('pending')
+                ));
+                setDoing(allOrders.filter((order) => 
+                    order.status.includes('doing')
+                ));
+            }
+            })
+    }
+    useEffect(() => {
+        getAllOrders(token);
+    }, [token]);
+    setTimeout(() => {getAllOrders(token)},30000);
+    const handleChange = (id, status, index) => {
+        let statusOrder = '';
+        let key=`/${id}`
+        console.log(key);
+        if(status === 'pending') {
+            statusOrder = {'status' : 'doing'}
+        }
+        if(status ===  'doing') {
+            statusOrder = {'status' : 'done'}
+        }
+        const options = {
+            method: 'PUT',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `${token}`
+            },
+            body: JSON.stringify(statusOrder),
+        };
+        fetch(`https://lab-api-bq.herokuapp.com/orders/${key}`, options)
+        .then(response => response.json())
+        .then((result) => {
+            if(status === 'pending' && result.id === pending[index].id){
+                pending.splice(index, 1)
+                setPending([...pending])
+                setDoing([...doing, result])
+            }
+            if(status === 'doing' && result.id === doing[index].id){
+                doing.splice(index, 1)
+                console.log(setDoing([...doing]))
+            }
+        })
+    }
     return (
         <div>
             <h1>
-                Pagina de Pedidos
+                TAG Burger
             </h1>
-            <div> 
-                <p>Client: {showClient}</p>
-                <p>Mesa: {showTable}</p>
-                <p>Pedido: {showOrder}</p>
-                <p>Observações: {showObservation}</p>
-            </div>
+            <section>
+                <h2>Pending</h2>
+                <div>
+                    {
+                        // .sort((a, b) => (a.id > b.id ? 1 : -1))
+                        // .map(({id, client, table, status, createdAt, updatedAt, Products}, index) => (
+
+                            (Object.keys(pending).map((qtd) => (
+                        
+                            {
+                                "id": `${pending[qtd].id}`,
+                                "qtd": `${pending[qtd]}`
+                                })))}
+                            <button
+                                className="comanda-button"
+                                onClick={() => handleChange()} 
+                            >Iniciar Pedido</button>
+                        
+                            
+                            
+                </div>
+            </section>
+            <section className="pedidos-andamento">
+                {doing !== [] &&
+                    <>
+                        <h2>Doing</h2>
+                        <div>
+                            {doing
+                                .sort((a, b) => (a.id > b.id ? 1 : -1))
+                                .map(({id, client, table, status, createdAt, updatedAt, Products}, index) => (
+                                    <div key={id}>
+                                            <div 
+                                                id={id}
+                                                client={client}
+                                                table={table}
+                                                status={status}
+                                                create={createdAt}
+                                                update={createdAt}
+                                                ordersProducts = {Products}
+                                            >
+                                            </div>
+                                        <button
+                                            onClick={() => handleChange(id, status, index)} 
+                                        >Finalizar Pedido</button>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </>
+                }
+            </section>
         </div>
     )
 }
-
 export default Kitchen;
-

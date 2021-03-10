@@ -23,10 +23,10 @@ function Menu({ menu, addToCart }) {
         <div>
             <div id="menu-area">
                 <DivButton>
-                    <ButtonMenu onClick={() => setShow(true)}>Café da Manhã</ButtonMenu>
-                    <ButtonMenu onClick={() => setShow(false)}>Hamburgueria</ButtonMenu>
+                    <ButtonMenu className='menus but' onClick={() => setShow(true)}>Café da Manhã</ButtonMenu>
+                    <ButtonMenu className='menus but' onClick={() => setShow(false)}>Hamburgueria</ButtonMenu>
                 </DivButton>
-                <MenuPedidos>
+                <MenuPedidos className='menus'>
                     {
                         show ?
                             <div>
@@ -38,7 +38,7 @@ function Menu({ menu, addToCart }) {
                                         price={menu[key].price}
                                         addToCart={addToCart}
                                         key={index}
-                                        sku={key}
+                                        qtd={key}
                                     />
                                 ))
                                 }
@@ -53,7 +53,7 @@ function Menu({ menu, addToCart }) {
                                         price={menu[key].price}
                                         addToCart={addToCart}
                                         key={index}
-                                        sku={key}
+                                        qtd={key}
                                     />
                                 ))
                                 }
