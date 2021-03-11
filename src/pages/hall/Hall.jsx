@@ -19,23 +19,24 @@ const Hall = () => {
     const [menuData, setMenuData] = useState({});
     const [cartData, setCartData] = useState({});
     const [cartTotal, setCartTotal] = useState(0);
-    const [observation, setObservation] = useState('');
     const [order, setOrder] = useState([]);
-    const [table, setTable] = useState('');
+    const [table, setTable] = useState('')
     const [client, setClient] = useState('');
-  
+    const [observation, setObservation] = useState('')
+
     const [theme, toggleTheme] = useDarkMode();
     const themeMode = theme === 'light' ? lightTheme : darkTheme;
-
+    
     const getToken = async (token) => {
         const { url, options } = USER(token);
         const response = await fetch(url, options);
         const json = await response.json();
         setMenuData(json);
     }
+
     useEffect(() => {
         getToken(token)
-    }, []);
+    }, [])
 
     useEffect(() => {
         let total = (0);
@@ -67,7 +68,6 @@ const Hall = () => {
         setCartData(newCart);
     };
 
-    const createOrder = async (client, table, observation) => {
     function alertSwal() {
         Swal.fire({
             title: 'Pedido enviado!',
@@ -78,46 +78,47 @@ const Hall = () => {
             width: 250,
         });
     }
-      
+
     function createOrder(client, table,) {
         const myHeaders = new Headers();
+
         myHeaders.append("Authorization", `${token}`);
         myHeaders.append("Content-Type", "application/json");
-      
-        const products =
-            (Object.keys(cartData).map((qtd) => (
-                {
-                    "id": `${menuData[qtd].id}`,
-                    "qtd": `${cartData[qtd]}`
-                }
-            )));
 
-        const body = JSON.stringify({
+        const products = (Object.keys(cartData).map((qtd) => (
+            {
+                "id": `${menuData[qtd].id}`,
+                "qtd": `${cartData[qtd]}`
+            }
+        )));
+
+        const raw = JSON.stringify({
             client,
             table,
             observation,
-            products: products,
-        });
-        const options = {
+            products: products
+        })
+
+        const requestOptions = {
             method: "POST",
             headers: myHeaders,
-            body: body,
+            body: raw,
             redirect: "follow"
         };
 
-        fetch("https://lab-api-bq.herokuapp.com/orders", options)
-        .then(response => response.json())
-        .then(result => {
-            setOrder(result.json);
-        })
+        fetch("https://lab-api-bq.herokuapp.com/orders", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                setOrder(result.json)
+            })
     }
 
     function logout(event) {
         event.preventDefault();
         localStorage.clear();
         history.push("/");
-      }
-  
+    }
+
     const token = localStorage.getItem('token');
     return (
         <div>
@@ -167,7 +168,6 @@ const Hall = () => {
                                 {Object.keys(cartData).map((qtd, index) => (
                                     <ProductsOrders className='inputShadow' key={index}>
                                         <SpanNameOrders key={index}>
-
                                             <p>
                                                 {menuData[qtd].name}
                                             </p>
@@ -217,7 +217,6 @@ const Hall = () => {
                                             R$ <span id="total-amount">{cartTotal},00</span>
                                         </Soma>
                                     </DivTotal>
-                                    {response && response.ok && <p>Seu pedido foi enviado</p>}
                                 </div>
                             </div>
                         </div>
