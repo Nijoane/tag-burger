@@ -69,7 +69,7 @@ const Register = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const { url, options } = CREATE_USER(form);
+        const { url, options } = await CREATE_USER(form);
         const response = await fetch(url, options);
         const json = await response.json();
         setResponse(json);

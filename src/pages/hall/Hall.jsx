@@ -13,6 +13,7 @@ import { GlobalStyles, lightTheme, darkTheme } from '../../components/globalStyl
 import { ThemeProvider } from 'styled-components';
 import { ButtonSend, InputTable, InputClient, LabelClient, SpanFlavor, Complement, SpanNameOrders, ProductsOrders, MenuOrders, DivMenus, LogoHall, ButtonPedidos, Textarea, SpamQtd, DivTotal, Soma, Total, Itens, ButtonLogout } from '../../components/stylesMenu';
 import Swal from "sweetalert2";
+
 const Hall = () => {
     const history = useHistory();
     const [menuData, setMenuData] = useState({});
@@ -22,15 +23,21 @@ const Hall = () => {
     const [table, setTable] = useState('')
     const [client, setClient] = useState('');
     const [observation, setObservation] = useState('')
-    const [status, setStatus] = useState('pending')
+
     const [theme, toggleTheme] = useDarkMode();
     const themeMode = theme === 'light' ? lightTheme : darkTheme;
-    useEffect(async function (token) {
+    
+    const getToken = async (token) => {
         const { url, options } = USER(token);
         const response = await fetch(url, options);
         const json = await response.json();
         setMenuData(json);
-    })
+    }
+
+    useEffect(() => {
+        getToken(token)
+    }, [])
+
     useEffect(() => {
         let total = (0);
         Object.keys(cartData).map((qtd) => {
@@ -39,7 +46,8 @@ const Hall = () => {
             return (total += qty * price);
         })
         setCartTotal(total);
-    }, [cartData])
+    }, [cartData]);
+
     const addToCart = qtd => {
         let newCart = { ...cartData };
         if (qtd in cartData) {
@@ -50,6 +58,7 @@ const Hall = () => {
         }
         setCartData(newCart);
     };
+
     const reduceFromCart = qtd => {
         let newCart = { ...cartData };
         if (qtd in cartData) {
@@ -69,9 +78,10 @@ const Hall = () => {
             width: 250,
         });
     }
-      
+
     function createOrder(client, table,) {
         const myHeaders = new Headers();
+
         myHeaders.append("Authorization", `${token}`);
         myHeaders.append("Content-Type", "application/json");
 
@@ -80,15 +90,13 @@ const Hall = () => {
                 "id": `${menuData[qtd].id}`,
                 "qtd": `${cartData[qtd]}`
             }
-        )))
+        )));
 
         const raw = JSON.stringify({
-            status,
             client,
             table,
-            //observation: observation,
+            observation,
             products: products
-
         })
 
         const requestOptions = {
@@ -97,18 +105,20 @@ const Hall = () => {
             body: raw,
             redirect: "follow"
         };
+
         fetch("https://lab-api-bq.herokuapp.com/orders", requestOptions)
             .then(response => response.json())
             .then(result => {
                 setOrder(result.json)
-                setStatus(result.status)
             })
     }
+
     function logout(event) {
         event.preventDefault();
         localStorage.clear();
         history.push("/");
-      }
+    }
+
     const token = localStorage.getItem('token');
     return (
         <div>
@@ -125,7 +135,6 @@ const Hall = () => {
                         <Menu
                             menu={menuData}
                             addToCart={addToCart}
-
                         />
                     </div>
                     <MenuOrders className='menus'>
@@ -159,7 +168,6 @@ const Hall = () => {
                                 {Object.keys(cartData).map((qtd, index) => (
                                     <ProductsOrders className='inputShadow' key={index}>
                                         <SpanNameOrders key={index}>
-
                                             <p>
                                                 {menuData[qtd].name}
                                             </p>
