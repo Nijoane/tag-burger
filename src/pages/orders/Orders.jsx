@@ -4,7 +4,9 @@ const Orders = () => {
     const [done, setDone] = useState([]);
     const [delivered, setDelivered] = useState([]);
 
+    const observation = localStorage.getItem('observation');
     const token = localStorage.getItem('token');
+    
     const getAllOrders = async (token) => {
         const options = {
             method: 'GET',
@@ -78,7 +80,7 @@ const Orders = () => {
                 <h2>Pedidos prontos</h2>
                 <div>
                     {done
-                        .map(({ id, client_name, table, status, createdAt, updatedAt, Products }, index) => (
+                        .map(({id, client_name, table, status, createdAt, updatedAt, Products }, index) => (
                             <div key={Math.random()}>
                                 <div key={Math.random()}>
                                     <p>Pedido n°:{id}</p>
@@ -93,6 +95,7 @@ const Orders = () => {
                                         return <p key={Math.random()}>{templateOrder}</p>
                                     })}
                                     </div>
+                                    <p>Observação: {observation}</p>
                                     <p>Status do pedido: {status}</p>
                                     <p>Pedido realizado em: {createdAt}</p>
                                     <p>Pedido atualizado em: {updatedAt}</p>
@@ -127,6 +130,7 @@ const Orders = () => {
                                                     return <p key={Math.random()}>{templateOrder}</p>
                                                 })}
                                             </div>
+                                            <p>Observação: {observation}</p>
                                             <p>Status do pedido: {status}</p>
                                             <p>Pedido realizdo em: {createdAt}</p>
                                             <p>Pedido atualizado em: {updatedAt}</p>
