@@ -70,23 +70,26 @@ const Kitchen = () => {
             <section>
                 <h2>Pending</h2>
                 <div>
-                    {
-                        // .sort((a, b) => (a.id > b.id ? 1 : -1))
-                        // .map(({id, client, table, status, createdAt, updatedAt, Products}, index) => (
-
-                            (Object.keys(pending).map((qtd) => (
-                        
-                            {
-                                "id": `${pending[qtd].id}`,
-                                "qtd": `${pending[qtd]}`
-                                })))}
+                    {pending
+                        .sort((a, b) => (a.id > b.id ? 1 : -1))
+                        .map(({id, client, table, status, createdAt, updatedAt, Products}, index) => (
+                        <div key={id}>
+                            <div>
+                               <p>id={id}</p> 
+                               <p>client={client}</p> 
+                               <p>table={table}</p> 
+                               <p> status={status}</p> 
+                               <p>create={createdAt} </p>  
+                               <p>ordersProducts = {Products}</p> 
+                            
+                            </div>
                             <button
                                 className="comanda-button"
-                                onClick={() => handleChange()} 
+                                onClick={() => handleChange(id, status, index)} 
                             >Iniciar Pedido</button>
-                        
-                            
-                            
+                        </div>
+                        ))
+                    }
                 </div>
             </section>
             <section className="pedidos-andamento">

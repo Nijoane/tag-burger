@@ -5,6 +5,11 @@ import { Title, Form, Template, Page, Input, Button, Images, BurgerImage } from 
 import Burger from '../../images/burger.png'
 import Logo from '../../images/logoBranco.png'
 import { CREATE_USER } from '../../components/api';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+function Alert(props) {
+	return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
 
 const formFields = [
     {
@@ -31,6 +36,7 @@ const formFields = [
 
 const Register = () => {
     const [response, setResponse] = useState();
+    const [openAlertError, setOpenAlertError] = useState(false);
     const [form, setForm] = useState(
         formFields.reduce((acc, field) => {
             return {
@@ -40,6 +46,14 @@ const Register = () => {
             };
         }, {}),
     );
+    const handleClose = (reason) => {
+		if (reason === 'clickaway') {
+		  return;
+        }
+        
+		setOpenAlertError(false);
+	  };
+
     const history = useHistory();
     const goToHall = () => {
         history.push('/Hall');
@@ -59,13 +73,20 @@ const Register = () => {
         const response = await fetch(url, options);
         const json = await response.json();
         setResponse(json);
+        console.log(response)
 
         if (json.role === 'salao') {
             goToHall();
         }
         else if (json.role === 'cozinha') {
             goToKitchen();
+        }else{
+            setOpenAlertError(true);
+            localStorage.removeItem('token');
+            localStorage.removeItem('id');
         }
+        
+
     }
     return (
         <Page>
@@ -99,9 +120,15 @@ const Register = () => {
                 ))}
                 {
                     response && response.ok &&
-                    <p style={{'padding': '10px',}}>Seu registro foi criado com sucesso</p>
+                    <p style={{ 'padding': '10px', }}>Seu registro foi criado com sucesso</p>
                 }
-                <Button>Registrar</Button>
+                <Snackbar open={openAlertError} autoHideDuration={4000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="warning">
+                        Ocorreu um erro. 
+                        Talvez esse usuário já exista, ou suas informações não estão corretas!
+			        </Alert>
+                </Snackbar>
+                <Button> Registrar</Button>
             </Form>
             <Template>
                 <Images>

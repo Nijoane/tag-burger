@@ -21,7 +21,6 @@ const Hall = () => {
     const [order, setOrder] = useState([]);
     const [table, setTable] = useState('')
     const [client, setClient] = useState('');
-    const [response, setResponse] = useState('');
     const [observation, setObservation] = useState('')
     const [status, setStatus] = useState('pending')
     const [theme, toggleTheme] = useDarkMode();
@@ -102,10 +101,7 @@ const Hall = () => {
             .then(response => response.json())
             .then(result => {
                 setOrder(result.json)
-                setResponse(result.json)
-                console.log(result);
                 setStatus(result.status)
-                console.log(result.status)
             })
     }
     function logout(event) {
@@ -213,7 +209,6 @@ const Hall = () => {
                                             R$ <span id="total-amount">{cartTotal},00</span>
                                         </Soma>
                                     </DivTotal>
-                                    {response && response.ok && <p>Seu pedido foi enviado</p>}
                                 </div>
                             </div>
                         </div>
