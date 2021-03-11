@@ -4,7 +4,7 @@ export const MenuPedidos = styled.div`
     border-radius: 30px;
     background: linear-gradient(145deg, #fffdf5, #dbd4ce);
     box-shadow:  11px 11px 57px #999590,
-             -11px -11px 57px #ffffff;
+            -11px -11px 57px #ffffff;
     height: 390px;     
     width: 450px;
     overflow: auto;
@@ -26,7 +26,7 @@ export const MenuOrders = styled.div`
     border-radius: 30px;
     background: linear-gradient(145deg, #fffdf5, #dbd4ce);
     box-shadow:  11px 11px 57px #999590,
-             -11px -11px 57px #ffffff;
+            -11px -11px 57px #ffffff;
     height: 390px;     
     width: 480px;
     overflow: auto;
@@ -135,6 +135,14 @@ export const Products = styled.div`
     border-radius: 10px;
     background: linear-gradient(145deg, #fffdf5, #dbd4ce);
     box-shadow:  11px 11px 57px #999590,
+                -11px -11px 57px #ffffff;
+    
+    @media screen and (max-width: 1024px) {
+    width: 380px;
+    height: 100px;
+    }
+    @media screen and (max-width: 768px) {
+    width: 250px;
                      -11px -11px 57px #ffffff;
     @media screen and (min-width:321px) and (max-width:768px) {
     width: 250px;
@@ -246,7 +254,7 @@ export const ProductsOrders = styled.div`
     border-radius: 10px;
     background: linear-gradient(145deg, #fffdf5, #dbd4ce);
     box-shadow:  11px 11px 57px #999590,
-                 -11px -11px 57px #ffffff;
+                -11px -11px 57px #ffffff;
     padding: 15px;
     @media screen and (max-width: 1024px) {
         width: 380px;

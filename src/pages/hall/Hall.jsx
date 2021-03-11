@@ -13,25 +13,30 @@ import { GlobalStyles, lightTheme, darkTheme } from '../../components/globalStyl
 import { ThemeProvider } from 'styled-components';
 import { ButtonSend, InputTable, InputClient, LabelClient, SpanFlavor, Complement, SpanNameOrders, ProductsOrders, MenuOrders, DivMenus, LogoHall, ButtonPedidos, Textarea, SpamQtd, DivTotal, Soma, Total, Itens, ButtonLogout } from '../../components/stylesMenu';
 import Swal from "sweetalert2";
+
 const Hall = () => {
     const history = useHistory();
     const [menuData, setMenuData] = useState({});
     const [cartData, setCartData] = useState({});
     const [cartTotal, setCartTotal] = useState(0);
+    const [observation, setObservation] = useState('');
     const [order, setOrder] = useState([]);
-    const [table, setTable] = useState('')
+    const [table, setTable] = useState('');
     const [client, setClient] = useState('');
-    const [response, setResponse] = useState('');
-    const [observation, setObservation] = useState('')
-    const [status, setStatus] = useState('pending')
+  
     const [theme, toggleTheme] = useDarkMode();
     const themeMode = theme === 'light' ? lightTheme : darkTheme;
-    useEffect(async function (token) {
+
+    const getToken = async (token) => {
         const { url, options } = USER(token);
         const response = await fetch(url, options);
         const json = await response.json();
         setMenuData(json);
-    })
+    }
+    useEffect(() => {
+        getToken(token)
+    }, []);
+
     useEffect(() => {
         let total = (0);
         Object.keys(cartData).map((qtd) => {
@@ -40,7 +45,8 @@ const Hall = () => {
             return (total += qty * price);
         })
         setCartTotal(total);
-    }, [cartData])
+    }, [cartData]);
+
     const addToCart = qtd => {
         let newCart = { ...cartData };
         if (qtd in cartData) {
@@ -51,6 +57,7 @@ const Hall = () => {
         }
         setCartData(newCart);
     };
+
     const reduceFromCart = qtd => {
         let newCart = { ...cartData };
         if (qtd in cartData) {
@@ -60,6 +67,7 @@ const Hall = () => {
         setCartData(newCart);
     };
 
+    const createOrder = async (client, table, observation) => {
     function alertSwal() {
         Swal.fire({
             title: 'Pedido enviado!',
@@ -75,38 +83,33 @@ const Hall = () => {
         const myHeaders = new Headers();
         myHeaders.append("Authorization", `${token}`);
         myHeaders.append("Content-Type", "application/json");
+      
+        const products =
+            (Object.keys(cartData).map((qtd) => (
+                {
+                    "id": `${menuData[qtd].id}`,
+                    "qtd": `${cartData[qtd]}`
+                }
+            )));
 
-        const products = (Object.keys(cartData).map((qtd) => (
-            {
-                "id": `${menuData[qtd].id}`,
-                "qtd": `${cartData[qtd]}`
-            }
-        )))
-        const raw = JSON.stringify({
-            status,
+        const body = JSON.stringify({
             client,
             table,
-            //observation: observation,
-            products: products
-
-        })
-
-        const requestOptions = {
+            observation,
+            products: products,
+        });
+        const options = {
             method: "POST",
             headers: myHeaders,
-            body: raw,
+            body: body,
             redirect: "follow"
         };
-      
-        fetch("https://lab-api-bq.herokuapp.com/orders", requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                setOrder(result.json)
-                setResponse(result.json)
-                console.log(result);
-                setStatus(result.status)
-                console.log(result.status)
-            })
+
+        fetch("https://lab-api-bq.herokuapp.com/orders", options)
+        .then(response => response.json())
+        .then(result => {
+            setOrder(result.json);
+        })
     }
 
     function logout(event) {
@@ -131,7 +134,6 @@ const Hall = () => {
                         <Menu
                             menu={menuData}
                             addToCart={addToCart}
-
                         />
                     </div>
                     <MenuOrders className='menus'>

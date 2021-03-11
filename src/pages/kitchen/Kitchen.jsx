@@ -1,115 +1,137 @@
 import { useEffect, useState } from 'react';
+
 const Kitchen = () => {
     const [pending, setPending] = useState([]);
     const [doing, setDoing] = useState([]);
+
     const token = localStorage.getItem('token');
     const getAllOrders = async (token) => {
         const options = {
             method: 'GET',
-            headers: { 
+            headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `${token}`
             },
         };
+
         fetch('https://lab-api-bq.herokuapp.com/orders', options)
-        .then(response => response.json())
-        .then(result => {
-            if(result) {
-                const allOrders = result;
-                console.log(allOrders)
-                setPending(allOrders.filter((order) => 
-                    order.status.includes('pending')
-                ));
-                setDoing(allOrders.filter((order) => 
-                    order.status.includes('doing')
-                ));
-            }
+            .then(response => response.json())
+            .then(result => {
+                if (result) {
+                    const allOrders = result;
+                    setPending(allOrders.filter((item) =>
+                        item.status.includes('pending')
+                    ));
+                    setDoing(allOrders.filter((item) =>
+                        item.status.includes('doing')
+                    ));
+                }
             })
     }
     useEffect(() => {
         getAllOrders(token);
     }, [token]);
-    setTimeout(() => {getAllOrders(token)},30000);
+
+    setTimeout(() => { getAllOrders(token) }, 30000);
+
     const handleChange = (id, status, index) => {
         let statusOrder = '';
-        let key=`/${id}`
-        console.log(key);
-        if(status === 'pending') {
-            statusOrder = {'status' : 'doing'}
+        let key = `/${id}`
+
+        if (status === 'pending') {
+            statusOrder = { 'status': 'doing' }
         }
-        if(status ===  'doing') {
-            statusOrder = {'status' : 'done'}
+        if (status === 'doing') {
+            statusOrder = { 'status': 'done' }
         }
+
         const options = {
             method: 'PUT',
-            headers: { 
+            headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `${token}`
             },
             body: JSON.stringify(statusOrder),
         };
+
         fetch(`https://lab-api-bq.herokuapp.com/orders/${key}`, options)
-        .then(response => response.json())
-        .then((result) => {
-            if(status === 'pending' && result.id === pending[index].id){
-                pending.splice(index, 1)
-                setPending([...pending])
-                setDoing([...doing, result])
-            }
-            if(status === 'doing' && result.id === doing[index].id){
-                doing.splice(index, 1)
-                console.log(setDoing([...doing]))
-            }
-        })
+            .then(response => response.json())
+            .then((result) => {
+                if (status === 'pending' && result.id === pending[index].id) {
+                    pending.splice(index, 1)
+                    setPending([...pending])
+                    setDoing([...doing, result])
+                }
+                if (status === 'doing' && result.id === doing[index].id) {
+                    doing.splice(index, 1)
+                    setDoing([...doing])
+                }
+            })
     }
+
     return (
         <div>
             <h1>
                 TAG Burger
             </h1>
             <section>
-                <h2>Pending</h2>
+                <h2>Pedidos pendentes</h2>
                 <div>
-                    {
-                        // .sort((a, b) => (a.id > b.id ? 1 : -1))
-                        // .map(({id, client, table, status, createdAt, updatedAt, Products}, index) => (
-
-                            (Object.keys(pending).map((qtd) => (
-                        
-                            {
-                                "id": `${pending[qtd].id}`,
-                                "qtd": `${pending[qtd]}`
-                                })))}
-                            <button
-                                className="comanda-button"
-                                onClick={() => handleChange()} 
-                            >Iniciar Pedido</button>
-                        
-                            
-                            
+                    {pending
+                        .map(({ id, client_name, table, status, createdAt, Products }, index) => (
+                            <div key={Math.random()}> 
+                                <div key={Math.random()}>
+                                    <p>Pedido n°: {id}</p>
+                                    <p>Clinte: {client_name}</p>
+                                    <p>Table: {table}</p>
+                                    <div> {Products && Products.map((product) => {
+                                        const { name, flavor, complement } = product;
+                                        const templateOrder = `
+                                            ${name} 
+                                            ${flavor || ""} 
+                                            ${complement || ""}`
+                                        return <p key={Math.random()}>{templateOrder}</p>
+                                    })}
+                                    </div>
+                                    <p>Status do pedido: {status}</p>
+                                    <p>Pedido realizdo em: {createdAt}</p>
+                                </div>
+                                <button
+                                    onClick={() => handleChange(id, status, index)}
+                                >Iniciar Pedido</button>
+                            </div>
+                        ))
+                    }
                 </div>
             </section>
-            <section className="pedidos-andamento">
+            <section>
                 {doing !== [] &&
                     <>
-                        <h2>Doing</h2>
+                        <h2>Pedidos em preparo</h2>
                         <div>
                             {doing
-                                .sort((a, b) => (a.id > b.id ? 1 : -1))
-                                .map(({id, client, table, status, createdAt, updatedAt, Products}, index) => (
-                                    <div key={id}>
-                                            <div 
-                                                id={id}
-                                                client={client}
-                                                table={table}
-                                                status={status}
-                                                create={createdAt}
-                                                update={createdAt}
-                                                ordersProducts = {Products}
-                                            >
+                                .map(({ id, client_name, table, status, createdAt, updatedAt, Products }, index) => (
+                                    <div key={Math.random()}>
+                                        <div key={Math.random()}>
+                                            <p>Pedido n°: {id}</p>
+                                            <p>Clinte: {client_name}</p>
+                                            <p>Table: {table}</p>
+                                            <div> 
+                                                {Products && Products.map((product) => {
+                                                    const { name, flavor, complement } = product;
+                                                    const templateOrder = `
+                                                        ${name} 
+                                                        ${flavor || ""} 
+                                                        ${complement || ""}`
+                                                    return <p key={Math.random()}>{templateOrder}</p>
+                                                })}
                                             </div>
+                                            <p>Status do pedido: {status}</p>
+                                            <p>Pedido realizdo em: {createdAt}</p>
+                                            <p>Pedido atualizado em: {updatedAt}</p>
+                                        </div>
                                         <button
-                                            onClick={() => handleChange(id, status, index)} 
+                                            onClick={() => handleChange(id, status, index)}
                                         >Finalizar Pedido</button>
                                     </div>
                                 ))
