@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-
+import Logo from '../../images/logo.png';
+import { ProductsCardapio, ButtonSendCardapio, LogoHallOrders, MenusCardapio, DivMenus, SpanOrders} from '../../components/stylesMenu';
 const Kitchen = () => {
     const [pending, setPending] = useState([]);
     const [doing, setDoing] = useState([]);
-
     const token = localStorage.getItem('token');
     const getAllOrders = async (token) => {
         const options = {
@@ -13,7 +13,6 @@ const Kitchen = () => {
                 'Authorization': `${token}`
             },
         };
-
         fetch('https://lab-api-bq.herokuapp.com/orders', options)
             .then(response => response.json())
             .then(result => {
@@ -31,20 +30,16 @@ const Kitchen = () => {
     useEffect(() => {
         getAllOrders(token);
     }, [token]);
-
     setTimeout(() => { getAllOrders(token) }, 30000);
-
     const handleChange = (id, status, index) => {
         let statusOrder = '';
         let key = `/${id}`
-
         if (status === 'pending') {
             statusOrder = { 'status': 'doing' }
         }
         if (status === 'doing') {
             statusOrder = { 'status': 'done' }
         }
-
         const options = {
             method: 'PUT',
             headers: {
@@ -53,7 +48,6 @@ const Kitchen = () => {
             },
             body: JSON.stringify(statusOrder),
         };
-
         fetch(`https://lab-api-bq.herokuapp.com/orders/${key}`, options)
             .then(response => response.json())
             .then((result) => {
@@ -68,38 +62,36 @@ const Kitchen = () => {
                 }
             })
     }
-
     return (
         <div>
-            <h1>
-                TAG Burger
-            </h1>
+             <LogoHallOrders src={Logo} alt='' width='400' />
+             <DivMenus>
             <section>
-                <h2>Pedidos pendentes</h2>
+                <MenusCardapio>Pedidos pendentes</MenusCardapio>
                 <div>
                     {pending
                         .map(({ id, client_name, table, status, createdAt, Products }, index) => (
-                            <div key={Math.random()}> 
+                            <ProductsCardapio key={Math.random()}> 
                                 <div key={Math.random()}>
-                                    <p>Pedido n°: {id}</p>
-                                    <p>Clinte: {client_name}</p>
-                                    <p>Table: {table}</p>
-                                    <div> {Products && Products.map((product) => {
+                                    <p>Pedido n°: <SpanOrders>{id}</SpanOrders> </p>
+                                    <p>Cliente: <SpanOrders>{client_name}</SpanOrders> </p>
+                                    <p>Mesa: <SpanOrders>{table}</SpanOrders></p>
+                                    <div> Produtos: <SpanOrders>{Products && Products.map((product) => {
                                         const { name, flavor, complement } = product;
                                         const templateOrder = `
                                             ${name} 
                                             ${flavor || ""} 
                                             ${complement || ""}`
                                         return <p key={Math.random()}>{templateOrder}</p>
-                                    })}
+                                    })}</SpanOrders>
                                     </div>
-                                    <p>Status do pedido: {status}</p>
-                                    <p>Pedido realizdo em: {createdAt}</p>
+                                    <p>Status do pedido: <SpanOrders>{status}</SpanOrders></p>
+                                    <p>Pedido realizdo em: <SpanOrders>{createdAt}</SpanOrders></p>
                                 </div>
-                                <button
+                                <ButtonSendCardapio 
                                     onClick={() => handleChange(id, status, index)}
-                                >Iniciar Pedido</button>
-                            </div>
+                                >Iniciar Pedido</ButtonSendCardapio >
+                            </ProductsCardapio>
                         ))
                     }
                 </div>
@@ -107,39 +99,40 @@ const Kitchen = () => {
             <section>
                 {doing !== [] &&
                     <>
-                        <h2>Pedidos em preparo</h2>
+                        <MenusCardapio>Pedidos em preparo</MenusCardapio >
                         <div>
                             {doing
                                 .map(({ id, client_name, table, status, createdAt, updatedAt, Products }, index) => (
-                                    <div key={Math.random()}>
+                                    <ProductsCardapio key={Math.random()}>
                                         <div key={Math.random()}>
-                                            <p>Pedido n°: {id}</p>
-                                            <p>Clinte: {client_name}</p>
-                                            <p>Table: {table}</p>
-                                            <div> 
-                                                {Products && Products.map((product) => {
+                                            <p>Pedido n°: <SpanOrders> {id}</SpanOrders></p>
+                                            <p>Cliente: <SpanOrders> {client_name}</SpanOrders></p>
+                                            <p>Mesa: <SpanOrders> {table}</SpanOrders></p>
+                                            <div> Produtos: <SpanOrders> {Products && Products.map((product) => {
                                                     const { name, flavor, complement } = product;
                                                     const templateOrder = `
                                                         ${name} 
                                                         ${flavor || ""} 
                                                         ${complement || ""}`
                                                     return <p key={Math.random()}>{templateOrder}</p>
-                                                })}
+                                                })}</SpanOrders>
+                                                
                                             </div>
-                                            <p>Status do pedido: {status}</p>
-                                            <p>Pedido realizdo em: {createdAt}</p>
-                                            <p>Pedido atualizado em: {updatedAt}</p>
+                                            <p>Status do pedido: <SpanOrders> {status}</SpanOrders></p>
+                                            <p>Pedido realizdo em: <SpanOrders> {createdAt}</SpanOrders></p>
+                                            <p>Pedido atualizado em: <SpanOrders> {updatedAt}</SpanOrders></p>
                                         </div>
-                                        <button
+                                        <ButtonSendCardapio 
                                             onClick={() => handleChange(id, status, index)}
-                                        >Finalizar Pedido</button>
-                                    </div>
+                                        >Finalizar Pedido</ButtonSendCardapio >
+                                    </ProductsCardapio>
                                 ))
                             }
                         </div>
                     </>
                 }
             </section>
+            </DivMenus>
         </div>
     )
 }

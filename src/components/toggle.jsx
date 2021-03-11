@@ -16,9 +16,9 @@ Sun = Moon = styled.div`
 export const Toggle = ({ theme, toggleTheme }) => {
   return (
     <div onClick={toggleTheme}>
-      { theme === 'light' ? <Sun><img src={on} alt="" width='50'  srcset=""/></Sun>
+      { theme === 'light' ? <Sun><img src={on} alt="" width='50'/></Sun>
       : 
-      <Moon><img src={off} alt="" width='50' srcset=""/></Moon>}
+      <Moon><img src={off} alt="" width='50'/></Moon>}
     </div>
   )
 }

@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { ProductsCardapio, ButtonSendCardapio, MenusCardapio, DivMenus, LogoHallOrders, SpanOrders } from '../../components/stylesMenu';
+import Logo from '../../images/logo.png';
 
 const Orders = () => {
     const [done, setDone] = useState([]);
@@ -71,36 +73,35 @@ const Orders = () => {
 
     return (
         <div>
-            <h1>
-                TAG Burger
-            </h1>
+             <LogoHallOrders src={Logo} alt='' width='400' />
+             <DivMenus>
             <section>
-                <h2>Pedidos prontos</h2>
+                <MenusCardapio >Pedidos prontos</MenusCardapio >
                 <div>
                     {done
                         .map(({ id, client_name, table, status, createdAt, updatedAt, Products }, index) => (
-                            <div key={Math.random()}>
+                            <ProductsCardapio key={Math.random()}>
                                 <div key={Math.random()}>
-                                    <p>Pedido n°:{id}</p>
-                                    <p>Clinte: {client_name}</p>
-                                    <p>Table: {table}</p>
-                                    <div> {Products && Products.map((product) => {
+                                    <p>Pedido n°: <SpanOrders >{id}</SpanOrders ></p>
+                                    <p>Cliente: <SpanOrders >{client_name}</SpanOrders > </p>
+                                    <p>Mesa: <SpanOrders >{table}</SpanOrders ></p>
+                                    <div> Produtos: <SpanOrders >{Products && Products.map((product) => {
                                         const { name, flavor, complement } = product;
                                         const templateOrder = `
                                             ${name} 
                                             ${flavor || ""} 
                                             ${complement || ""}`
                                         return <p key={Math.random()}>{templateOrder}</p>
-                                    })}
+                                    })}</SpanOrders > 
                                     </div>
-                                    <p>Status do pedido: {status}</p>
-                                    <p>Pedido realizado em: {createdAt}</p>
-                                    <p>Pedido atualizado em: {updatedAt}</p>
+                                    <p>Status do pedido: <SpanOrders >{status}</SpanOrders > </p>
+                                    <p>Pedido realizado em: <SpanOrders >{createdAt}</SpanOrders ></p>
+                                    <p>Pedido atualizado em: <SpanOrders >{updatedAt}</SpanOrders > </p>
                                 </div>
-                                <button
+                                <ButtonSendCardapio 
                                     onClick={() => handleChange(id, status, index)}
-                                >Entregue</button>
-                            </div>
+                                >Entregue</ButtonSendCardapio >
+                            </ProductsCardapio>
                         ))
                     }
                 </div>
@@ -108,36 +109,37 @@ const Orders = () => {
             <section>
                 {delivered !== [] &&
                     <>
-                        <h2>Pedidos entregues</h2>
+                        <MenusCardapio >Pedidos entregues</MenusCardapio >
                         <div>
                             {delivered
                                 .map(({ id, client_name, table, status, createdAt, updatedAt, Products }, index) => (
-                                    <div key={Math.random()}>
+                                    <ProductsCardapio key={Math.random()}>
                                         <div key={Math.random()}>
-                                            <p>Pedido n°: {id}</p>
-                                            <p>Clinte: {client_name}</p>
-                                            <p>Table: {table}</p>
-                                            <div> 
-                                                {Products && Products.map((product) => {
+                                            <p>Pedido n°: <SpanOrders >{id}</SpanOrders ></p>
+                                            <p>Cliente: <SpanOrders >{client_name}</SpanOrders ></p>
+                                            <p>Mesa: <SpanOrders >{table}</SpanOrders ></p>
+                                            <div> Produtos: <SpanOrders > {Products && Products.map((product) => {
                                                     const { name, flavor, complement } = product;
                                                     const templateOrder = `
                                                         ${name} 
                                                         ${flavor || ""} 
                                                         ${complement || ""}`
                                                     return <p key={Math.random()}>{templateOrder}</p>
-                                                })}
+                                                })}</SpanOrders >
+                                               
                                             </div>
-                                            <p>Status do pedido: {status}</p>
-                                            <p>Pedido realizdo em: {createdAt}</p>
-                                            <p>Pedido atualizado em: {updatedAt}</p>
+                                            <p>Status do pedido: <SpanOrders >{status}</SpanOrders > </p>
+                                            <p>Pedido realizdo em: <SpanOrders >{createdAt}</SpanOrders > </p>
+                                            <p>Pedido atualizado em: <SpanOrders >{updatedAt}</SpanOrders > </p>
                                         </div>
-                                    </div>
+                                    </ProductsCardapio>
                                 ))
                             }
                         </div>
                     </>
                 }
             </section>
+            </DivMenus>
         </div>
     )
 }
