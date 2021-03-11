@@ -6,22 +6,26 @@ import Logo from '../../images/logoLaranja.png';
 import { USER } from "../../components/api";
 import { FaTrashAlt } from 'react-icons/fa';
 import { ButtonSend, InputTable, InputClient, LabelClient, SpanFlavor, Complement, SpanNameOrders, ProductsOrders, MenuOrders, DivMenus, LogoHall, ButtonPedidos, Textarea, SpamQtd, DivTotal, Soma, Total, Itens } from '../../components/stylesMenu';
+
 const Hall = () => {
     const [menuData, setMenuData] = useState({});
     const [cartData, setCartData] = useState({});
     const [cartTotal, setCartTotal] = useState(0);
+    const [observation, setObservation] = useState('');
     const [order, setOrder] = useState([]);
-    const [table, setTable] = useState('')
+    const [table, setTable] = useState('');
     const [client, setClient] = useState('');
-    const [response, setResponse] = useState('');
-    const [observation, setObservation] = useState('')
-    const [status, setStatus] = useState('pending')
-    useEffect(async function (token) {
+
+    const getToken = async (token) => {
         const { url, options } = USER(token);
         const response = await fetch(url, options);
         const json = await response.json();
         setMenuData(json);
-    })
+    }
+    useEffect(() => {
+        getToken(token)
+    }, []);
+
     useEffect(() => {
         let total = (0);
         Object.keys(cartData).map((qtd) => {
@@ -30,7 +34,8 @@ const Hall = () => {
             return (total += qty * price);
         })
         setCartTotal(total);
-    }, [cartData])
+    }, [cartData]);
+
     const addToCart = qtd => {
         let newCart = { ...cartData };
         if (qtd in cartData) {
@@ -41,6 +46,7 @@ const Hall = () => {
         }
         setCartData(newCart);
     };
+
     const reduceFromCart = qtd => {
         let newCart = { ...cartData };
         if (qtd in cartData) {
@@ -49,44 +55,41 @@ const Hall = () => {
         }
         setCartData(newCart);
     };
-    function createOrder(client, table,) {
+
+    const createOrder = async (client, table, observation) => {
         const myHeaders = new Headers();
         myHeaders.append("Authorization", `${token}`);
         myHeaders.append("Content-Type", "application/json");
-      
-        const products = (Object.keys(cartData).map((qtd) => (
-            `
-            qtd: ${cartData[qtd]}  
-            id:${menuData[qtd].id} 
-            name:${menuData[qtd].name}
-        `)))
-        
-        const raw = JSON.stringify({
-            status,
+
+        const products =
+            (Object.keys(cartData).map((qtd) => (
+                {
+                    "id": `${menuData[qtd].id}`,
+                    "qtd": `${cartData[qtd]}`
+                }
+            )));
+
+        const body = JSON.stringify({
             client,
             table,
-            products: products.push('qtd', 'id', 'name')
-        })
-        
+            observation,
+            products: products,
+        });
 
-        const requestOptions = {
+        const options = {
             method: "POST",
             headers: myHeaders,
-            body: raw,
+            body: body,
             redirect: "follow"
         };
-      
-        fetch("https://lab-api-bq.herokuapp.com/orders", requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                setOrder(result.json)
-                setResponse(result.json)
-                console.log(result);
-                setStatus(result.status)
-                console.log(result.status)
-            })
+
+        fetch("https://lab-api-bq.herokuapp.com/orders", options)
+        .then(response => response.json())
+        .then(result => {
+            setOrder(result.json);
+        })
     }
-  
+
     const token = localStorage.getItem('token');
     return (
         <div>
@@ -99,7 +102,6 @@ const Hall = () => {
                     <Menu
                         menu={menuData}
                         addToCart={addToCart}
-
                     />
                 </div>
                 <MenuOrders>
@@ -181,13 +183,13 @@ const Hall = () => {
                                         R$ <span id="total-amount">{cartTotal},00</span>
                                     </Soma>
                                 </DivTotal>
-                                {response && response.ok && <p>Seu pedido foi enviado</p>}
+                                {/* {response && response.ok && <p>Seu pedido foi enviado</p>} */}
                             </div>
                         </div>
                     </div>
                 </MenuOrders>
             </DivMenus>
-            <ButtonSend onClick={() => createOrder(client, table, order)}>Enviar Pedido</ButtonSend>
+            <ButtonSend onClick={() => createOrder(client, table, observation, order)}>Enviar Pedido</ButtonSend>
         </div>
     );
 }

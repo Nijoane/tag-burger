@@ -27,6 +27,7 @@ const Login = () => {
         const { url, options } = TOKEN({
             email,
             password,
+            token,
         })
 
         const response = await fetch(url, options);
