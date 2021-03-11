@@ -6,7 +6,9 @@ const Orders = () => {
     const [done, setDone] = useState([]);
     const [delivered, setDelivered] = useState([]);
 
+    const observation = localStorage.getItem('observation');
     const token = localStorage.getItem('token');
+    
     const getAllOrders = async (token) => {
         const options = {
             method: 'GET',
@@ -94,9 +96,10 @@ const Orders = () => {
                                         return <p key={Math.random()}>{templateOrder}</p>
                                     })}</SpanOrders > 
                                     </div>
+                                    <p>Observação: {observation}</p>
                                     <p>Status do pedido: <SpanOrders >{status}</SpanOrders > </p>
                                     <p>Pedido realizado em: <SpanOrders >{createdAt}</SpanOrders ></p>
-                                    <p>Pedido atualizado em: <SpanOrders >{updatedAt}</SpanOrders > </p>
+                                    <p>Pedido atualizado em: <SpanOrders >{updatedAt}</SpanOrders > </p>                        
                                 </div>
                                 <ButtonSendCardapio 
                                     onClick={() => handleChange(id, status, index)}
@@ -128,6 +131,7 @@ const Orders = () => {
                                                 })}</SpanOrders >
                                                
                                             </div>
+                                            <p>Observação: {observation}</p>
                                             <p>Status do pedido: <SpanOrders >{status}</SpanOrders > </p>
                                             <p>Pedido realizdo em: <SpanOrders >{createdAt}</SpanOrders > </p>
                                             <p>Pedido atualizado em: <SpanOrders >{updatedAt}</SpanOrders > </p>
