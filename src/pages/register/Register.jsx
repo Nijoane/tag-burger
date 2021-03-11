@@ -4,12 +4,13 @@ import { FiArrowLeft } from 'react-icons/fi';
 import { Title, Form, Template, Page, Input, Button, Images, BurgerImage } from '../../components/stylesForm';
 import Burger from '../../images/burger.png'
 import Logo from '../../images/logoBranco.png'
-import { CREATE_USER } from '../../components/api';
+import { CREATE_USER } from '../../services/api';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+
 function Alert(props) {
 	return <MuiAlert elevation={6} variant="filled" {...props} />;
-  }
+}
 
 const formFields = [
     {
@@ -37,6 +38,7 @@ const formFields = [
 const Register = () => {
     const [response, setResponse] = useState();
     const [openAlertError, setOpenAlertError] = useState(false);
+
     const [form, setForm] = useState(
         formFields.reduce((acc, field) => {
             return {
@@ -48,11 +50,11 @@ const Register = () => {
     );
     const handleClose = (reason) => {
 		if (reason === 'clickaway') {
-		  return;
+		    return;
         }
         
 		setOpenAlertError(false);
-	  };
+	};
 
     const history = useHistory();
     const goToHall = () => {
@@ -73,7 +75,6 @@ const Register = () => {
         const response = await fetch(url, options);
         const json = await response.json();
         setResponse(json);
-        console.log(response)
 
         if (json.role === 'salao') {
             goToHall();
@@ -85,8 +86,6 @@ const Register = () => {
             localStorage.removeItem('token');
             localStorage.removeItem('id');
         }
-        
-
     }
     return (
         <Page>

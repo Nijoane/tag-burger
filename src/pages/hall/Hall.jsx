@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Menu from "../../containers/Menu";
 import Logo from '../../images/logo.png';
 import Logout from '../../images/logout1.png';
-import { USER } from "../../components/api";
+import { USER } from "../../services/api";
 import { FaTrashAlt } from 'react-icons/fa';
 import { Toggle } from '../../components/toggle';
 import { useDarkMode } from '../../components/useDarkMode';

@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import MenuCardapio from "../../containers/MenuCardapio";
 import LogoWhite from '../../images/logoWhite.png';
-import { USER } from "../../components/api";
+import { USER } from "../../services/api";
 import { LogoHall, BodyCardapio} from '../../components/stylesCardapio';
 const Cardapio = () => {
 
