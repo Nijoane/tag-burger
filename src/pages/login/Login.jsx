@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import { TOKEN } from '../../components/api';
+import { TOKEN } from '../../services/api';
 import Password from '../../components/Password';
 import { Title, Form, Template, Page, Input, Button, Register, Images, BurgerImage, EYE } from '../../components/stylesForm';
 import Burger from '../../images/burger.png'
 import Logo from '../../images/logoBranco.png'
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+
 function Alert(props) {
 	return <MuiAlert elevation={6} variant="filled" {...props} />;
-  }
-
+}
 
 const Login = () => {
     const [PasswordInputType, TogleIcon] = Password();
@@ -21,11 +21,11 @@ const Login = () => {
 
     const handleClose = (reason) => {
 		if (reason === 'clickaway') {
-		  return;
+		    return;
         }
         
 		setOpenAlertError(false);
-	  };
+	};
 
     const history = useHistory();
     const goToHall = () => {

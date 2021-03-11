@@ -4,12 +4,13 @@ const Kitchen = () => {
     const [pending, setPending] = useState([]);
     const [doing, setDoing] = useState([]);
 
+    const observation = localStorage.getItem('observation')
     const token = localStorage.getItem('token');
     const getAllOrders = async (token) => {
         const options = {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json', 
                 'Authorization': `${token}`
             },
         };
@@ -93,6 +94,7 @@ const Kitchen = () => {
                                         return <p key={Math.random()}>{templateOrder}</p>
                                     })}
                                     </div>
+                                    <p>Observação: {observation}</p>
                                     <p>Status do pedido: {status}</p>
                                     <p>Pedido realizdo em: {createdAt}</p>
                                 </div>
@@ -126,6 +128,7 @@ const Kitchen = () => {
                                                     return <p key={Math.random()}>{templateOrder}</p>
                                                 })}
                                             </div>
+                                            <p>Observação: {observation}</p>
                                             <p>Status do pedido: {status}</p>
                                             <p>Pedido realizdo em: {createdAt}</p>
                                             <p>Pedido atualizado em: {updatedAt}</p>

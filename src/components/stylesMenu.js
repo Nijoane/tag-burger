@@ -143,7 +143,7 @@ export const Products = styled.div`
     }
     @media screen and (max-width: 768px) {
     width: 250px;
-                     -11px -11px 57px #ffffff;
+                -11px -11px 57px #ffffff;
     @media screen and (min-width:321px) and (max-width:768px) {
     width: 250px;
     height: 100px;
