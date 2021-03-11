@@ -143,6 +143,4 @@ const Kitchen = () => {
         </div>
     )
 }
-
 export default Kitchen;
-

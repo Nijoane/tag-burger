@@ -14,6 +14,13 @@ export const Button = styled.button`
     background: linear-gradient(25deg, #F57F17, #F57F17);
     box-shadow:  -9px 9px 14px rgba(0, 0, 0, 0.5),
             9px -9px 14px #ffffff;
+
+    &:active {
+        background:#e0700d;
+        position: relative;
+        height: 58px;
+        box-shadow: none;
+    }
 `;
 
 export const Register = styled.p`

@@ -14,7 +14,7 @@ export const MenuPedidos = styled.div`
         width: 420px;
         margin-left: -50px;
     }
-    @media screen and (max-width: 768px) {
+    @media screen and (min-width:321px) and (max-width:768px) {
         height: 700px;     
         width:350px;
         padding: 20px;
@@ -34,6 +34,14 @@ export const MenuOrders = styled.div`
     margin-left: 100px;
     margin-right: -50px;
     margin-top: 20px;
+    
+    @media screen and (min-width:321px) and (max-width:768px) {
+        height: 700px;     
+        width:300px;
+        margin-right: 250px;
+        margin-left: -100px;
+        }
+
     @media screen and (max-width: 1024px) {
     height: 510px;   
     width: 420px;
@@ -41,12 +49,7 @@ export const MenuOrders = styled.div`
     margin-left: -10px;
     }
     
-    @media screen and (max-width: 768px) {
-    height: 700px;     
-    width:300px;
-    margin-right: 250px;
-    margin-left: -100px;
-    }
+
 `;
 
 export const BtnAdition = styled.button`
@@ -60,7 +63,16 @@ export const BtnAdition = styled.button`
     border: none;
     outline: none;
     cursor: pointer;
-    @media screen and (max-width: 768px) {
+    box-shadow:5px 5px 5px 5px #a8a39e;
+    &:active {
+        background:#e0700d;
+        color: #fff
+        position: relative;
+        top: 5px;
+        box-shadow: none;
+    }
+   
+    @media screen and (min-width:321px) and (max-width:768px) {
         height: 100px;  
     }
     @media screen and (max-width: 1024px) {
@@ -78,6 +90,7 @@ export const ButtonMenu = styled.button`
     height: 60px;
     background: linear-gradient(145deg, #fffdf5, #dbd4ce);
     box-shadow:  10px 10px 20px #828284,
+    5px 5px 5px 5px #dbd4ce,
     -10px -10px 20px #ffffff;
     margin-bottom: 20px;
     border: none;
@@ -88,14 +101,21 @@ export const ButtonMenu = styled.button`
     font-family: Roboto Slab;
     font-size: 15px;
     font-weight: 400;
+
+    &:active {
+        background:#dbd4ce;
+        position: relative;
+        top: 5px;
+        box-shadow: none;
+    }
+    @media screen and (min-width:321px) and (max-width:768px) {
+    width: 115px;
+    height: 80px;
+    }
+
     @media screen and (max-width: 1024px) {
     width: 150px;
     height: 70px;
-    }
-        
-    @media screen and (max-width: 768px) {
-    width: 115px;
-    height: 80px;
     }
 `;
 
@@ -123,6 +143,13 @@ export const Products = styled.div`
     }
     @media screen and (max-width: 768px) {
     width: 250px;
+                     -11px -11px 57px #ffffff;
+    @media screen and (min-width:321px) and (max-width:768px) {
+    width: 250px;
+    height: 100px;
+    }
+    @media screen and (max-width: 1024px) {
+    width: 380px;
     height: 100px;
     }
 `;
@@ -137,12 +164,11 @@ export const DivMenus = styled.div`
 export const LogoHall = styled.img`
     margin-left: 350px;
     margin-top: 10px;
-    @media screen and (max-width: 1024px) {
-        margin-left: 270px;
-    }
-    @media screen and (max-width: 768px) {
+    @media screen and (min-width:321px) and (max-width:768px) {
         margin-left: 250px;
     }
+    @media screen and (max-width: 1024px) {
+        margin-left: 270px;
 `;
 
 export const Textarea = styled.textarea`
@@ -155,11 +181,11 @@ export const Textarea = styled.textarea`
     padding: 20px;
     border-radius: 10px;
     color:  #E65100;
+    @media screen and (min-width:321px) and (max-width:768px) {
+        width:250px;
+    }
     @media screen and (max-width: 1024px) {
         width: 370px;
-    }
-    @media screen and (max-width: 768px) {
-        width:250px;
     }
 `;
 
@@ -190,7 +216,7 @@ export const SpanName = styled.span`
     display:flex;
     justify-content: space-between;
     width: 270px;
-    @media screen and (max-width: 768px) {
+    @media screen and (min-width:321px) and (max-width:768px) {
     width: 100px;
     }
     @media screen and (max-width: 1024px) {
@@ -207,7 +233,7 @@ export const SpamQtd = styled.span`
     @media screen and (max-width: 1024px) {   
         width: 380px;
     }
-    @media screen and (max-width: 768px) {
+    @media screen and (min-width:321px) and (max-width:768px) {
         width: 260px;
     }
 `;
@@ -234,7 +260,7 @@ export const ProductsOrders = styled.div`
         width: 380px;
         height: 90px;
     }
-    @media screen and (max-width: 768px) {
+    @media screen and (min-width:321px) and (max-width:768px) {
         width: 255px;
         height: 90px;
     }
@@ -247,7 +273,7 @@ export const SpanNameOrders = styled.span`
     @media screen and (max-width: 1024px) {
         width: 350px;
     }
-    @media screen and (max-width: 768px) {
+    @media screen and (min-width:321px) and (max-width:768px) {
         width: 230px;
     }
 `;
@@ -260,7 +286,7 @@ export const DivTotal = styled.div`
     @media screen and (max-width: 1024px) {
     margin-left:-65px
     }
-    @media screen and (max-width: 768px) {
+    @media screen and (min-width:321px) and (max-width:768px) {
         margin-left:-160px
         }
 `;
@@ -303,11 +329,18 @@ export const ButtonPedidos = styled.button`
     height: 50px;
     width: 200px;
     box-shadow : 9px 9px 19px #909092, -9px -9px 19px #fff;
+
+    &:active {
+        background:#e0700d;
+        color: #fff
+        position: relative;
+        box-shadow: none;
+    }
     @media screen and (max-width: 1024px) {
         margin-left: 950px;
         height: 80px;
     }
-    @media screen and (max-width: 768px) {
+    @media screen and (min-width:321px) and (max-width:768px)  {
         margin-left:750px;
     }
 `;
@@ -368,11 +401,29 @@ export const ButtonSend  = styled.button`
     height: 60px;
     width: 200px;
     box-shadow : 9px 9px 19px #909092, -9px -9px 19px #fff;
+
+    &:active {
+        background:#d14a00;
+        color: #fff,
+        position: relative;
+        height: 55px;
+        box-shadow: none;
+    }
     @media screen and (max-width: 1024px) {
         margin-left: 950px;
         height: 80px;
     }
-    @media screen and (max-width: 768px) {
+    @media screen and (min-width:321px) and (max-width:768px) {
         margin-left:750px;
     }
+`;
+
+export const ButtonLogout  = styled.button`
+    border: none;
+    outline: none;
+    background: transparent;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 640px;
+    cursor: pointer;
 `;
