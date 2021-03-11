@@ -15,7 +15,6 @@ import { ButtonSend, InputTable, InputClient, LabelClient, SpanFlavor, Complemen
 import Swal from "sweetalert2";
 
 const Hall = () => {
-
     const history = useHistory();
     const [menuData, setMenuData] = useState({});
     const [cartData, setCartData] = useState({});
@@ -92,7 +91,7 @@ const Hall = () => {
                 "qtd": `${cartData[qtd]}`
             }
         )));
-        
+
         const raw = JSON.stringify({
             client,
             table,
