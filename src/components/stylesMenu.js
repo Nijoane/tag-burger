@@ -27,7 +27,7 @@ export const MenuOrders = styled.div`
     background: linear-gradient(145deg, #fffdf5, #dbd4ce);
     box-shadow:  11px 11px 57px #999590,
             -11px -11px 57px #ffffff;
-    height: 390px;     
+    height: 400px;     
     width: 480px;
     overflow: auto;
     padding: 20px;
@@ -121,6 +121,40 @@ export const ButtonMenu = styled.button`
 
 export const DivButton = styled.div`
     width:450px;
+`;
+
+export const ProductsCardapio = styled.div`
+    display: flex;
+    justify-content: space-between;
+    background: #F3ECE5;
+    box-shadow: 0 2px 6px rgba(88,116,159,.15);
+    margin-left: 80px;
+    padding: 20px;
+    border-radius: 4px;
+    width: 400px;
+    height: 230px;
+    margin-top: 3%;
+    border-radius: 10px;
+    overflow: auto;
+    background: linear-gradient(145deg, #fffdf5, #dbd4ce);
+    box-shadow:  11px 11px 57px #999590,
+                -11px -11px 57px #ffffff;
+    
+    @media screen and (max-width: 1024px) {
+    width: 380px;
+    height: 100px;
+    }
+    @media screen and (max-width: 768px) {
+    width: 250px;
+                     -11px -11px 57px #ffffff;
+    @media screen and (min-width:321px) and (max-width:768px) {
+    width: 250px;
+    height: 100px;
+    }
+    @media screen and (max-width: 1024px) {
+    width: 380px;
+    height: 100px;
+    }
 `;
 
 export const Products = styled.div`
@@ -426,4 +460,62 @@ export const ButtonLogout  = styled.button`
     margin-top: 10px;
     margin-left: 640px;
     cursor: pointer;
+`;
+
+export const ButtonSendCardapio  = styled.button`
+    border: none;
+    outline: none;
+    background: #E65100;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 10px;
+    height: 190px;
+    width: 100px;
+    box-shadow : 9px 9px 19px #909092, -9px -9px 19px #fff;
+
+    &:active {
+        background:#d14a00;
+        color: #fff;
+        position: relative;
+        height: 55px;
+        box-shadow: none;
+    }
+`;
+
+export const MenusCardapio = styled.h2`
+    background: #F57F17;
+    border: none;
+    border-radius: 10px;
+    color: black;
+    width: 200px;
+    height: 60px;
+    background: linear-gradient(145deg, #fffdf5, #dbd4ce);
+    box-shadow:  10px 10px 20px #828284,
+    5px 5px 5px 5px #dbd4ce,
+    -10px -10px 20px #ffffff;
+    margin-bottom: 20px;
+    border: none;
+    outline: none;
+    margin-top: 20px;
+    font-family: Roboto Slab;
+    margin-left: 180px;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 20px;
+    padding-left: 30px;
+    `;
+    
+    export const LogoHallOrders = styled.img`
+    margin-left: 580px;
+    margin-top: 10px;
+`;
+    
+export const SpanOrders = styled.span`
+    height:10px;
+    width: 50x;
+    color:  #E65100;
+    font-family: Roboto Slab;
+    font-size: 15px;
 `;

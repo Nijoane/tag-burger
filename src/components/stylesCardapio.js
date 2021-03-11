@@ -60,12 +60,13 @@ export const ProductsCardapio = styled.div`
     inset -6px -6px 10px 0 rgba(255, 255, 255, 0.9);
     border-radius: 4px;
     height: 280px;     
-    width: 255px;
+    width: 265px;
     margin-top: 3%;
     border-radius: 10px;
-    background: linear-gradient(145deg, #fffdf5, #dbd4ce);
+    background: #F57F17;
     box-shadow: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.5),
     inset -6px -6px 10px 0 rgba(255, 255, 255, 0.9);
+    flex-wrap: wrap;
 `;
 
 export const LogoHallCardapio = styled.img`
@@ -93,12 +94,11 @@ export const ComplementCardapio = styled.p`
 export const SpamMenuItemCardapio = styled.div`
     padding: 15px;
     height: 90px;     
-    width: 255px;
-    border-radius: 10px;
-    background: #F57F17;
-box-shadow: inset 50px 50px 100px #c46612,
-            inset -50px -50px 100px #ff981c;
-
+    width: 265px;
+    border-radius: 00px 0px 10px 10px;
+    background: linear-gradient(145deg, #fffdf5, #dbd4ce);
+    box-shadow: inset 6px 6px 10px 0 rgba(0, 0, 0, 0.5),
+    inset -6px -6px 10px 0 rgba(255, 255, 255, 0.9);
 `;
 
 export const SpanFlavorCardapio = styled.span`
@@ -118,3 +118,9 @@ export const SpanNameCardapio = styled.span`
         width: 200px;
     }
 `;
+
+    export const ImagemCardapio = styled.img`
+    border-radius: 10px 10px 0px 0px;
+    margin-bottom:-5px;
+    `;
+
