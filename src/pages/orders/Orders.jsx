@@ -96,7 +96,7 @@ const Orders = () => {
                                         return <p key={Math.random()}>{templateOrder}</p>
                                     })}</SpanOrders > 
                                     </div>
-                                    <p>Observação: {observation}</p>
+                                    <p>Observação: <SpanOrders>{observation}</SpanOrders></p>
                                     <p>Status do pedido: <SpanOrders >{status}</SpanOrders > </p>
                                     <p>Pedido realizado em: <SpanOrders >{createdAt}</SpanOrders ></p>
                                     <p>Pedido atualizado em: <SpanOrders >{updatedAt}</SpanOrders > </p>                        
@@ -131,10 +131,10 @@ const Orders = () => {
                                                 })}</SpanOrders >
                                                
                                             </div>
-                                            <p>Observação: {observation}</p>
-                                            <p>Status do pedido: <SpanOrders >{status}</SpanOrders > </p>
-                                            <p>Pedido realizdo em: <SpanOrders >{createdAt}</SpanOrders > </p>
-                                            <p>Pedido atualizado em: <SpanOrders >{updatedAt}</SpanOrders > </p>
+                                            <p>Observação:<SpanOrders>{observation}</SpanOrders> </p>
+                                            <p>Status do pedido: <SpanOrders>{status}</SpanOrders > </p>
+                                            <p>Pedido realizdo em: <SpanOrders>{createdAt}</SpanOrders > </p>
+                                            <p>Pedido atualizado em: <SpanOrders>{updatedAt}</SpanOrders > </p>
                                         </div>
                                     </ProductsCardapio>
                                 ))

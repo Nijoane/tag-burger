@@ -474,14 +474,6 @@ export const ButtonSendCardapio  = styled.button`
     height: 190px;
     width: 100px;
     box-shadow : 9px 9px 19px #909092, -9px -9px 19px #fff;
-
-    &:active {
-        background:#d14a00;
-        color: #fff;
-        position: relative;
-        height: 55px;
-        box-shadow: none;
-    }
 `;
 
 export const MenusCardapio = styled.h2`
