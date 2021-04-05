@@ -28,10 +28,14 @@ const Hall = () => {
     const themeMode = theme === 'light' ? lightTheme : darkTheme;
     
     const getToken = async (token) => {
-        const { url, options } = USER(token);
-        const response = await fetch(url, options);
-        const json = await response.json();
-        setMenuData(json);
+        try{
+            const { url, options } = USER(token);
+            const response = await fetch(url, options);
+            const json = await response.json();
+            setMenuData(json);
+        } catch(error){
+            error.message('error')
+        }
     }
 
     useEffect(() => {
