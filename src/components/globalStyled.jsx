@@ -41,10 +41,9 @@ export const GlobalStyles = createGlobalStyle`
   `;
 
 export const lightTheme = {
-   text: '#121212',
+  text: '#121212',
   primary: '#6200ee',
   shadow: '20px 20px 60px #999590, -20px -20px 60px #ffffff'
-  
 };
 
 export const darkTheme = {
