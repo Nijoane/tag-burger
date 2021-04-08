@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ProductsCardapio, ButtonSendCardapio, MenusCardapio, DivMenus, LogoHallOrders, SpanOrders } from '../../components/stylesMenu';
+import { ProductsCardapio, ButtonSendCardapio, MenusCardapio, DivMenus, LogoHallOrders,BodyMenu, SpanOrders } from '../../components/stylesMenu';
 import Logo from '../../images/logo.png';
 
 const Orders = () => {
@@ -74,7 +74,7 @@ const Orders = () => {
     }
 
     return (
-        <div>
+        <BodyMenu>
              <LogoHallOrders src={Logo} alt='' width='400' />
              <DivMenus>
             <section>
@@ -144,7 +144,7 @@ const Orders = () => {
                 }
             </section>
             </DivMenus>
-        </div>
+        </BodyMenu>
     )
 }
 

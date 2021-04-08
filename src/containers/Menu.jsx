@@ -1,6 +1,6 @@
 import { useState } from "react";
 import MenuItem from "../components/MenuItem";
-import { ButtonMenu, DivButton, MenuPedidos } from '../components/stylesMenu'
+import { ButtonMenu, DivButton, MenuPedidos, BodyMenu } from '../components/stylesMenu'
 function Menu({ menu, addToCart }) {
     const [show, setShow] = useState(true)
     function complements(item) {
@@ -20,7 +20,7 @@ function Menu({ menu, addToCart }) {
         }
     }
     return (
-        <div>
+        <BodyMenu>
             <div id="menu-area">
                 <DivButton>
                     <ButtonMenu className='menus but' onClick={() => setShow(true)}>Café da Manhã</ButtonMenu>
@@ -61,7 +61,7 @@ function Menu({ menu, addToCart }) {
                     }
                 </MenuPedidos>
             </div>
-        </div>
+        </BodyMenu>
     );
 }
 export default Menu;

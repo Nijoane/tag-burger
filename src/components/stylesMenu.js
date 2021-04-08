@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const BodyMenu = styled.div`
+    margin-left: -400px;
+`;
+
 export const MenuPedidos = styled.div`
     border-radius: 30px;
     background: linear-gradient(145deg, #fffdf5, #dbd4ce);
@@ -196,7 +200,7 @@ export const DivMenus = styled.div`
 `;
 
 export const LogoHall = styled.img`
-    margin-left: 350px;
+    margin-left: -50px;
     margin-top: 10px;
     @media screen and (min-width:321px) and (max-width:768px) {
         margin-left: 250px;
@@ -358,7 +362,7 @@ export const ButtonPedidos = styled.button`
     color: #fff;
     cursor: pointer;
     position: absolute;
-    margin-left:1100px;
+    margin-left:700px;
     border-radius: 0 0 10px 10px;
     height: 50px;
     width: 200px;
@@ -424,7 +428,7 @@ export const ButtonSend  = styled.button`
     border: none;
     outline: none;
     background: #E65100;
-    margin-left: 1000px;
+    margin-left: 600px;
     text-align: center;
     font-size: 30px;
     color: #fff;
@@ -457,8 +461,8 @@ export const ButtonLogout  = styled.button`
     outline: none;
     background: transparent;
     position: absolute;
-    margin-top: 10px;
-    margin-left: 640px;
+    margin-top: 20px;
+    margin-left: 650px;
     cursor: pointer;
 `;
 
