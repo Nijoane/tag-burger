@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Logo from '../../images/logo.png';
-import { ProductsCardapio, ButtonSendCardapio, LogoHallOrders, MenusCardapio, DivMenus, SpanOrders} from '../../components/stylesMenu';
+import { ProductsCardapio, ButtonSendCardapio, BodyMenu, LogoHallOrders, MenusCardapio, DivMenus, SpanOrders} from '../../components/stylesMenu';
 const Kitchen = () => {
     const [pending, setPending] = useState([]);
     const [doing, setDoing] = useState([]);
@@ -65,7 +65,7 @@ const Kitchen = () => {
             })
     }
     return (
-        <div>
+        <BodyMenu>
              <LogoHallOrders src={Logo} alt='' width='400' />
              <DivMenus>
             <section>
@@ -137,7 +137,7 @@ const Kitchen = () => {
                 }
             </section>
             </DivMenus>
-        </div>
+        </BodyMenu>
     )
 }
 export default Kitchen;

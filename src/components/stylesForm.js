@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-
 export const Button = styled.button`
     background: #F57F17;
     width: 200px;
     height: 60px;
-    margin-left: 120px;
+    margin-left: 35%;
+    margin-top: 5%;
     border-radius: 20px;
     cursor: pointer;
     border: none;
@@ -24,66 +24,61 @@ export const Button = styled.button`
 `;
 
 export const Register = styled.p`
-    padding-left: 120px;
-    padding-top: 60px;
+    margin-left: 30%;
+    margin-top: 10%;
 `;
 
 export const Span = styled.span`
     color: #F57F17;
 `;
 
-
 export const Title = styled.h2`
     font-family: Roboto Slab;
     text-align: center;
     font-size: 32px;
     font-weight: 400;
+    margin-top: 10px;
 `;
 
 export const Form = styled.form`
     align-items: center;
     background: #F3ECE5;
-    border-radius: 20px 0px 0px 20px;
     display: center;
-    height: 600px;
-    padding-left: 20px;
-    padding-top: 20px;
+    height: 100vh;
     justify-content: center;
-    width: 500px;
+    width: 100vw;
+
 `;
 
-export const Page = styled.div`
+export const Teste = styled.div`
 
-    border-radius: 50px;
+`;
+export const Page = styled.div`
+    background: red;
     display: flex;
     justify-content: center;
-    width: 100%;
-    height: 600px;
-    margin-left: 22%;
-    margin-top: 2%;
-    padding-bottom: 8%;
-    box-shadow:  -9px 9px 14px rgba(0, 0, 0, 0.5),
-             9px -9px 14px rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 100vw;
 `;
 
 export const Images = styled.div`
-    // margin-top: -50px;
 `;
 
 export const BurgerImage = styled.img`
-    width: 400px;
-    margin-left: 50px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
 `;
 
 export const Template = styled.div`
     align-items: center;
     background: #E65100;
-    border-radius: 0 20px 20px 0;
     padding: 15px;
+    padding-button: 155px;
     display: flex;
-    height: 600px;
+    height: 100vh;
     justify-content: center;
-    width: 500px;
+    width: 100vw;
 `;
 
 export const Input = styled.input`
@@ -98,12 +93,13 @@ export const Input = styled.input`
     display: block;
     color: #f57f17;
     font-size: 20px;
-    outline:none;
+    outline: none;
     background: linear-gradient(225deg, #b4b4b7, #d6d6d9);
+    margin-left: 20%;
 `;
 
 export const EYE = styled.span`
-    margin: 380px;
+    margin: 480px;
     position:absolute;
     margin-top: -65px;
     color: #E65100;
