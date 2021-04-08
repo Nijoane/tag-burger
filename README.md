@@ -8,7 +8,7 @@ Um pequeno restaurante de hambúrgueres, que está crescendo, necessita uma inte
 
 __Somos TAG Burger, um fast food 24hrs__
 
-<img src='src/images/tagburger.gif' width='100%'>
+<img src='src/images/GIPHY.gif' width='100%'>
 
 A nossa proposta de serviço 24 horas foi muito bem recebida e, para continuar a crescer, precisamos de um sistema que nos ajude a receber pedidos de nossos clientes.
 
