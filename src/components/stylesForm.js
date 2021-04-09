@@ -5,7 +5,7 @@ export const Button = styled.button`
     width: 200px;
     height: 60px;
     margin-left: 35%;
-    margin-top: 5%;
+    margin-top: 15px;
     border-radius: 20px;
     cursor: pointer;
     border: none;
@@ -37,7 +37,7 @@ export const Title = styled.h2`
     text-align: center;
     font-size: 32px;
     font-weight: 400;
-    margin-top: 10px;
+    margin-top: 30px;
 `;
 
 export const Form = styled.form`
