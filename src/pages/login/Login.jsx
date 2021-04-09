@@ -84,7 +84,7 @@ const Login = () => {
 			        </Alert>
                 </Snackbar>
                 <Button>Entrar</Button>
-                <Register>
+                <Register style={{'paddingLeft': '28px',}}>
                     Não tem conta? <NavLink
                         to="/register"
                         style={{
