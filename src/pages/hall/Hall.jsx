@@ -34,10 +34,9 @@ const Hall = () => {
             const json = await response.json();
             setMenuData(json);
         } catch(error){
-            error.message('error')
+            error.message('error');
         }
     }
-
     useEffect(() => {
         getToken(token)
     }, [])
