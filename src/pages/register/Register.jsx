@@ -95,6 +95,8 @@ const Register = () => {
                         style={{
                             'border': 'none',
                             'outline': 'none',
+                            'paddingLeft': '15px',
+                            'paddingTop': '15px',
                             'backgroundColor': '#F3ECE5',
                             'textAlign': 'center',
                             'fontSize': '50px',
@@ -127,7 +129,7 @@ const Register = () => {
                         Talvez esse usuário já exista, ou suas informações não estão corretas!
 			        </Alert>
                 </Snackbar>
-                <Button> Registrar</Button>
+                <Button>Registrar</Button>
             </Form>
             <Template>
                 <Images>
